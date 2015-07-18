@@ -5,9 +5,21 @@
 
 #![cfg(target_os="linux")]
 
+//Start allowing warnings that are unavoidable
+#![allow(non_camel_case_types)]
+#![allow(dead_code)]
+
+//Okay, let's import our internal modules
+pub mod posix_types;
+pub mod time;
+
 pub use std::os::*;
 pub use std::os::raw::*;
 pub use std::os::linux::raw::*; //Needed for time_t, dev_t, etc
+
+//And re-export our modules
+pub use posix_types::*;
+pub use time::*;
 
 #[cfg(test)]
 mod tests {
