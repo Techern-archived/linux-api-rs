@@ -1,4 +1,6 @@
-//!Constants and structures from include/uapi/linux/time.h
+//!Constants and structures from time classes 
+//!
+//! This includes include/uapi/linux/time.h, //include/linux/time.h, and /include/linux/time64.h
 
 ///A structure that contains the number of seconds and nanoseconds since an epoch.
 ///
@@ -132,3 +134,38 @@ pub const CLOCKS_MONO: ::clockid_t = CLOCK_MONOTONIC;
 
 ///A flag indicating time is absolute
 pub const TIMER_ABSTIME: ::c_int = 0x01;
+
+///The type used for 64-bit time
+pub type time64_t = i64;
+
+///The number of milliseconds in a second
+pub const MSEC_PER_SEC: ::c_long = 1000;
+
+///The number of microseconds in a millisecond
+pub const USEC_PER_MSEC: ::c_long = 1000;
+
+///The number of nanoseconds in a microsecond
+pub const NSEC_PER_USEC: ::c_long = 1000;
+
+///The number of nanoseconds in a millisecond
+pub const NSEC_PER_MSEC: ::c_long = 1000000;
+
+///The number of microseconds in a second
+pub const USEC_PER_SEC: ::c_long = 1000000;
+
+///The number of nanoseconds in a second
+pub const NSEC_PER_SEC: ::c_long = 1000000000;
+
+///The number of femtoseconds in a second
+pub const FSEC_PER_SEC: ::c_longlong = 1000000000000000;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_per_sec_accuracy() {
+        assert_eq!(NSEC_PER_MSEC, NSEC_PER_USEC * USEC_PER_MSEC);
+        assert_eq!(NSEC_PER_SEC, NSEC_PER_MSEC * MSEC_PER_SEC);
+    }
+}
