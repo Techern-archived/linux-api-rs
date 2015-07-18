@@ -55,8 +55,23 @@ pub fn set_normalized_timespec(ts: &mut timespec, sec: time_t, nsec: i64) {
     ts.tv_nsec = realnsec;
 }
 
-//TODO: timespec_add_safe, timespec_add, timespec_sub
+//TODO: timespec_add_safe, timespec_sub
 
+///Adds two timespecs together, returning the result as a new timespec
+pub fn timespec_add(lhs: &timespec, rhs: &timespec) -> timespec {
+    let mut ts_delta: timespec = timespec { tv_sec:0, tv_nsec: 0 };
+    set_normalized_timespec(&mut ts_delta, lhs.tv_sec + rhs.tv_sec, lhs.tv_nsec + rhs.tv_nsec);
+    ts_delta
+}
+
+///Subtracts rhs from lhs, returning the difference as a new timespec
+pub fn timespec_sub(lhs: &timespec, rhs: &timespec) -> timespec {
+    let mut ts_delta: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+    set_normalized_timespec(&mut ts_delta, lhs.tv_sec - rhs.tv_sec, lhs.tv_nsec - rhs.tv_nsec);
+    ts_delta
+}
+
+///Checks to see if a timespec is valid
 pub fn timespec_valid(ts: &timespec) -> bool {
     //Dates before 1970 are bogus
     if ts.tv_sec < 0 {
@@ -72,6 +87,7 @@ pub fn timespec_valid(ts: &timespec) -> bool {
     return true;
 }
 
+///Checks to see if a timespec is valid according to stricter rules
 pub fn timespec_valid_strict(ts: &timespec) -> bool {
     if !timespec_valid(ts) { 
         return false; 
@@ -86,6 +102,7 @@ pub fn timespec_valid_strict(ts: &timespec) -> bool {
     return true;
 }
 
+///Checks to see if a timeval is valid
 pub fn timeval_valid(tv: &timeval) -> bool {
     //Dates before 1970 are bogus
     if tv.tv_sec < 0 {
@@ -237,6 +254,50 @@ mod test {
         
         assert_eq!(4, spec.tv_sec);
         assert_eq!(NSEC_PER_SEC - 800, spec.tv_nsec);
+    }
+    
+    #[test]
+    fn test_timespec_add_simple() {
+        let lhs = timespec { tv_sec: 80, tv_nsec: 500 };
+        let rhs = timespec { tv_sec: 30, tv_nsec: 580 };
+        
+        let delta = timespec_add(&lhs, &rhs);
+        
+        assert_eq!(110, delta.tv_sec);
+        assert_eq!(1080, delta.tv_nsec);
+    }
+    
+    #[test]
+    fn test_timespec_add_manynanos() {
+        let lhs = timespec { tv_sec: 80, tv_nsec: NSEC_PER_SEC / 2 };
+        let rhs = timespec { tv_sec: 30, tv_nsec: (NSEC_PER_SEC / 2) + 400 };
+        
+        let delta = timespec_add(&lhs, &rhs);
+        
+        assert_eq!(111, delta.tv_sec);
+        assert_eq!(400, delta.tv_nsec);
+    }
+    
+    #[test]
+    fn test_timespec_sub_simple() {
+        let lhs = timespec { tv_sec: 80, tv_nsec: 500 };
+        let rhs = timespec { tv_sec: 30, tv_nsec: 580 };
+        
+        let delta = timespec_sub(&lhs, &rhs);
+        
+        assert_eq!(49, delta.tv_sec);
+        assert_eq!(NSEC_PER_SEC - 80, delta.tv_nsec);
+    }
+    
+    #[test]
+    fn test_timespec_sub_bad() {
+        let lhs = timespec { tv_sec: 80, tv_nsec: 500 };
+        let rhs = timespec { tv_sec: 1030, tv_nsec: 580 };
+        
+        let delta = timespec_sub(&lhs, &rhs);
+        
+        assert_eq!(-951, delta.tv_sec);
+        assert_eq!(NSEC_PER_SEC - 80, delta.tv_nsec);
     }
 
 }
