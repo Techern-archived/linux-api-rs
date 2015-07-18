@@ -163,10 +163,10 @@ pub const FSEC_PER_SEC: ::c_longlong = 1000000000000000;
 pub const TIME64_MAX: ::c_longlong = ((1u64 << 63) as i64);
 
 ///The maximum value of a ktime_t
-pub const KTIME_MAX: ::c_longlong = ((1u64 << 63) as i64);
+pub const KTIME_MAX: ::c_longlong = 9_223_372_036_854_775_807;
 
 ///The maximum number of seconds in a ktime_t
-pub const KTIME_SEC_MAX: ::c_longlong = KTIME_MAX / NSEC_PER_SEC;
+pub const KTIME_SEC_MAX: ::c_longlong = 9_223_372_036;
 
 #[cfg(test)]
 mod tests {
