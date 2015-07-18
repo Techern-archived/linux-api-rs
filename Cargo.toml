@@ -2,3 +2,17 @@
 name = "linux-api"
 version = "0.0.1"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
+
+description = "Types and constants for Linux API bindings. Actual bindings can be found in additional crates found in dev-dependencies"
+
+repository = "https://github.com/Techern/linux-api-rs"
+
+readme = "README.md"
+
+keywords = ["Linux", "kernel", "uapi"]
+
+license = "MIT"
+
+[dev-dependencies]
+
+#Nothing yet
