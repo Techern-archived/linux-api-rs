@@ -15,4 +15,4 @@ license = "MIT"
 
 [dev-dependencies]
 
-#Nothing yet
+time-sys = { version = "*", path = "lib/time-sys" }
