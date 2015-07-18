@@ -159,6 +159,15 @@ pub const NSEC_PER_SEC: ::c_long = 1000000000;
 ///The number of femtoseconds in a second
 pub const FSEC_PER_SEC: ::c_longlong = 1000000000000000;
 
+///The maximim value of a time64_t
+pub const TIME64_MAX: ::c_longlong = ((1u64 << 63) as i64);
+
+///The maximum value of a ktime_t
+pub const KTIME_MAX: ::c_longlong = ((1u64 << 63) as i64);
+
+///The maximum number of seconds in a ktime_t
+pub const KTIME_SEC_MAX: ::c_longlong = KTIME_MAX / NSEC_PER_SEC;
+
 #[cfg(test)]
 mod tests {
     use super::*;
