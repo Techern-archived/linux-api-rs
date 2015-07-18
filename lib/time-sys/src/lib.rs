@@ -33,7 +33,27 @@ pub fn timeval_compare(lhs: &timeval, rhs: &timeval) -> c_int {
 
 //TODO: mktime64
 //TODO: mktime
-//TODO: set_normalized_timespec
+
+///Sets the data contained in the borrowed `timespec` ts to normalized values
+pub fn set_normalized_timespec(ts: &mut timespec, sec: time_t, nsec: i64) {
+    let mut realsec = sec;
+    let mut realnsec = nsec;
+    
+    while realnsec >= NSEC_PER_SEC {
+        //TODO: Check to see if this gets optimized and, if so, force it not to as per kernel definition
+        realnsec -= NSEC_PER_SEC;
+        realsec += 1;
+    }
+    
+    while realnsec < 0 {
+        //Ditto
+        realnsec += NSEC_PER_SEC;
+        realsec -= 1;
+    }
+    
+    ts.tv_sec = realsec;
+    ts.tv_nsec = realnsec;
+}
 
 //TODO: timespec_add_safe, timespec_add, timespec_sub
 
@@ -197,6 +217,26 @@ mod test {
         let two = timeval { tv_sec: 10, tv_usec: 0 };
         
         assert_eq!(-1, timeval_compare(&one, &two));
+    }
+    
+    #[test]
+    fn test_normalized_timespec_many_nanos() {
+        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        
+        set_normalized_timespec(&mut spec, 10, NSEC_PER_SEC * 20);
+        
+        assert_eq!(30, spec.tv_sec);
+        assert_eq!(0, spec.tv_nsec);
+    }
+    
+    #[test]
+    fn test_normalized_timespec_negative_nanos() {
+        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        
+        set_normalized_timespec(&mut spec, 5, -800);
+        
+        assert_eq!(4, spec.tv_sec);
+        assert_eq!(NSEC_PER_SEC - 800, spec.tv_nsec);
     }
 
 }
