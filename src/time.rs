@@ -3,6 +3,7 @@
 ///A structure that contains the number of seconds and nanoseconds since an epoch.
 ///
 ///If in doubt, assume we're talking about the UNIX epoch.
+#[repr(C)]
 pub struct timespec {
     ///The number of seconds contained in this timespec
     tv_sec: ::time_t,
@@ -14,6 +15,7 @@ pub struct timespec {
 ///A structure that contains the number of seconds and microseconds since an epoch.
 ///
 ///If in doubt, assume we're talking about the UNIX epoch.
+#[repr(C)]
 pub struct timeval {
     ///The number of seconds contained in this timeval
     tv_sec: ::time_t,
@@ -25,6 +27,7 @@ pub struct timeval {
 ///A structure containing information on the time-based location of a timezone
 ///
 ///Please note that this does not include the name or country code, only the minutes west of Greenwich and the type of DST correction
+#[repr(C)]
 pub struct timezone {
     ///The number of minutes west of Greenwich
     tz_minuteswest: ::c_int,
@@ -53,6 +56,7 @@ pub const ITIMER_VIRTUAL: ::c_int = 1;
 pub const ITIMER_PROF: ::c_int = 2;
 
 ///An interval timer based on a `timespec`
+#[repr(C)]
 pub struct itimerspec {
     ///The period of time this timer should run for (Need to verify)
     it_interval: timespec,
@@ -62,6 +66,7 @@ pub struct itimerspec {
 }
 
 ///An interval timer based on a `timeval`
+#[repr(C)]
 pub struct itimerval {
     ///The period of time this timer should run for (Need to verify)
     it_interval: timeval,
