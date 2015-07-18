@@ -7,6 +7,7 @@
 
 pub use std::os::*;
 pub use std::os::raw::*;
+pub use std::os::linux::raw::*; //Needed for time_t, dev_t, etc
 
 #[cfg(test)]
 mod tests {
@@ -29,6 +30,10 @@ mod tests {
         
         let float: ::c_float = 2462347.426f32;
         let double: ::c_double = 2694237684327.4326237637f64;
+        
+        let dev: ::dev_t = 12467;
+        let mode: ::mode_t = 1365236;
+        let time: ::time_t = 134062;
         
         assert!(true);//Well, we haven't crashed! I guess it worked
     }
