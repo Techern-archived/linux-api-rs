@@ -8,10 +8,10 @@
 #[repr(C)]
 pub struct timespec {
     ///The number of seconds contained in this timespec
-    tv_sec: ::time_t,
+    pub tv_sec: ::time_t,
     
     ///The number of nanoseconds contained in this timespec
-    tv_nsec: ::c_long
+    pub tv_nsec: ::c_long
 }
 
 ///A structure that contains the number of seconds and microseconds since an epoch.
@@ -20,10 +20,10 @@ pub struct timespec {
 #[repr(C)]
 pub struct timeval {
     ///The number of seconds contained in this timeval
-    tv_sec: ::time_t,
+    pub tv_sec: ::time_t,
     
     ///The number of microseconds contained in this timeval
-    tv_usec: ::suseconds_t
+    pub tv_usec: ::suseconds_t
 }
 
 ///A structure containing information on the time-based location of a timezone
@@ -32,10 +32,10 @@ pub struct timeval {
 #[repr(C)]
 pub struct timezone {
     ///The number of minutes west of Greenwich
-    tz_minuteswest: ::c_int,
+    pub tz_minuteswest: ::c_int,
     
     ///The type of Daylight Savings Time correction
-    tz_dsttime: ::c_int
+    pub tz_dsttime: ::c_int
 }
 
 //Names of the interval timers
@@ -61,20 +61,20 @@ pub const ITIMER_PROF: ::c_int = 2;
 #[repr(C)]
 pub struct itimerspec {
     ///The period of time this timer should run for (Need to verify)
-    it_interval: timespec,
+    pub it_interval: timespec,
     
     ///The amount of time left until expiration (Need to verify)
-    it_value: timespec
+    pub it_value: timespec
 }
 
 ///An interval timer based on a `timeval`
 #[repr(C)]
 pub struct itimerval {
     ///The period of time this timer should run for (Need to verify)
-    it_interval: timeval,
+    pub it_interval: timeval,
     
     ///The amount of time left until expiration (Need to verify)
-    it_value: timeval
+    pub it_value: timeval
 }
 
 ///A system-wide clock that measures time from the "real world"
