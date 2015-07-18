@@ -1,0 +1,19 @@
+[package]
+name = "time-sys"
+version = "0.0.0"
+authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
+
+description = "(NOT YET FUNCTIONAL) Bindings to Linux's time.h and time64.h"
+
+repository = "https://github.com/Techern/linux-api-rs"
+
+keywords = ["Linux", "kernel", "uapi", "time", "time64"]
+
+license = "MIT"
+
+[dependencies]
+linux-api = "0.0.1" #{ version = "*", path = "../.." }
+
+[dev-dependencies]
+
+#Nothing yet
