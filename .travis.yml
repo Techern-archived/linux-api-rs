@@ -4,3 +4,9 @@ sudo: false
 
 #This is Rust!
 language: rust
+
+#We'll try to officially support all three release categories.
+rust:
+ - "stable"
+ - "beta"
+ - "nightly"
