@@ -7,3 +7,30 @@
 
 pub use std::os::*;
 pub use std::os::raw::*;
+
+#[cfg(test)]
+mod tests {
+
+    #[allow(unused_variables)]
+    #[test]
+    fn ensure_types_exist() {
+        let schar: ::c_schar = -3;
+        let uchar: ::c_uchar = 2;
+        let achar: ::c_char = 62;
+        
+        let ashort: ::c_short = -5162;
+        let ushort: ::c_ushort = 65000;
+        
+        let aint: ::c_int = 26327;
+        let uint: ::c_uint = 20000026;
+        
+        let long: ::c_long = 75473765327;
+        let ulong: ::c_ulong = 26294762868676748;
+        
+        let float: ::c_float = 2462347.426f32;
+        let double: ::c_double = 2694237684327.4326237637f64;
+        
+        assert!(true);//Well, we haven't crashed! I guess it worked
+    }
+
+}
