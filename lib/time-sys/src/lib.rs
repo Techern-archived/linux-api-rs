@@ -15,7 +15,18 @@ extern "C" {
     ///Gets the current time as seconds from the UNIX epoch
     pub fn time(t: *mut time_t) -> time_t;
     
+    ///Calculates the difference, in seconds, between two values of time_t
     pub fn difftime(time1: time_t, time0: time_t) -> c_double;
+    
+    ///Gets the time of day in the specified timezone and place it into the timeval
+    ///
+    ///Please use std::ptr::null_mut() for tz on Linux!
+    pub fn gettimeofday(tv: *mut timeval, tz: *mut timezone) -> c_int;
+    
+    ///Sets the time of day from the timeval and applies rules from the timezone to it
+    ///
+    ///Please use std::ptr::null() for tz on Linux!
+    pub fn settimeofday(tv: *const timeval, tz: *const timezone) -> c_int;
     
 }
 
@@ -203,6 +214,23 @@ mod test {
         unsafe { result = difftime(anothertime, atime); }
         
         assert_eq!(-100f64, result);
+    }
+    
+    #[test]
+    fn test_gettimeofday_ffi() {
+        let mut time = timeval { tv_sec: 0, tv_usec: 0 };
+        
+        let raw_time = &mut time as *mut timeval;
+        
+        unsafe {
+            let result: c_int = gettimeofday(raw_time, ::std::ptr::null_mut());
+            assert_eq!(0, result);
+        }
+        
+        assert!(!raw_time.is_null());
+        
+        assert!(time.tv_sec >= 1437310400); //At time of testing
+        
     }
     
     #[test]
