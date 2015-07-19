@@ -1,9 +1,9 @@
 [package]
 name = "time-sys"
-version = "0.0.0"
+version = "0.0.1"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
 
-description = "(NOT YET FUNCTIONAL) Bindings to Linux's time.h and time64.h"
+description = "Bindings to Linux's time.h and time64.h. Some functions have been replicated, but more are still to come."
 
 repository = "https://github.com/Techern/linux-api-rs"
 
