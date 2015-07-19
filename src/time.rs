@@ -22,6 +22,11 @@ impl timespec {
         timespec { tv_sec: 0, tv_nsec: 0 }
     }
     
+    ///Creates a new timespec from the specified number of seconds
+    pub fn from_seconds(seconds: ::time_t) -> timespec {
+        timespec { tv_sec: seconds, tv_nsec: 0 }
+    }
+    
     ///Clears this timespec, setting each value to zero
     pub fn clear(&mut self) {
         self.tv_sec = 0;
@@ -48,6 +53,11 @@ impl timeval {
     ///Creates a new timeval with both values defaulting to zero
     pub fn new() -> timeval {
         timeval { tv_sec: 0, tv_usec: 0 }
+    }
+    
+    ///Creates a new timeval from the specified number of seconds
+    pub fn from_seconds(seconds: ::time_t) -> timeval {
+        timeval { tv_sec: seconds, tv_usec: 0 }
     }
     
     ///Clears this timeval, setting each value to zero
@@ -194,8 +204,8 @@ pub const NSEC_PER_SEC: ::c_long = 1000000000;
 ///The number of femtoseconds in a second
 pub const FSEC_PER_SEC: ::c_longlong = 1000000000000000;
 
-///The maximim value of a time64_t
-pub const TIME64_MAX: ::c_longlong = ((1u64 << 63) as i64);
+///The maximum value of a time64_t
+//pub const TIME64_MAX: ::c_longlong = ((1u64 << 63) as i64);
 
 ///The maximum value of a ktime_t
 pub const KTIME_MAX: ::c_longlong = 9_223_372_036_854_775_807;
@@ -219,13 +229,13 @@ mod tests {
         
         assert_eq!(0, val.tv_sec);
         
-        val.tv_usec += 499;
+        val = timeval::from_seconds(100);
         
-        assert_eq!(499, val.tv_usec);
+        assert_eq!(100, val.tv_sec);
         
         val.clear();
         
-        assert_eq!(0, val.tv_usec);
+        assert_eq!(0, val.tv_sec);
     }
     
     #[test]
@@ -234,12 +244,12 @@ mod tests {
         
         assert_eq!(0, spec.tv_sec);
         
-        spec.tv_nsec += 499;
+        spec = timespec::from_seconds(164);
         
-        assert_eq!(499, spec.tv_nsec);
+        assert_eq!(164, spec.tv_sec);
         
         spec.clear();
         
-        assert_eq!(0, spec.tv_nsec);
+        assert_eq!(0, spec.tv_sec);
     }
 }
