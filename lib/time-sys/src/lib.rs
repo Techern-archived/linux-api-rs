@@ -4,6 +4,21 @@ extern crate linux_api;
 
 use linux_api::*;
 
+#[link(name="rt")]
+extern "C" {
+    //Dummy section to link RT, but probably shouldn't link everything to it
+}
+
+//First, we do external functions
+extern "C" {
+    
+    ///Gets the current time as seconds from the UNIX epoch
+    pub fn time(t: *mut time_t) -> time_t;
+    
+    pub fn difftime(time1: time_t, time0: time_t) -> c_double;
+    
+}
+
 ///Checks to see if two timespecs are equal
 pub fn timespec_equal(a: &timespec, b: &timespec) -> c_int {
     return ((a.tv_sec == b.tv_sec) && (a.tv_nsec == b.tv_nsec)) as c_int;
@@ -161,6 +176,34 @@ pub fn mktime64(year0: c_uint, mon0: c_uint, day: c_uint, hour: c_uint, min: c_u
 mod test {
     use super::*;
     use linux_api::*;
+    
+    #[test]
+    fn test_time_ffi() {
+        let mut atime: time_t = 0;
+        
+        unsafe { atime = time(::std::ptr::null_mut()); }
+        
+        assert!(atime >= 1437309103); //Time of first testing
+    }
+    
+    #[test]
+    fn test_difftime_ffi() {
+        let mut atime: time_t = 0;
+        
+        unsafe { atime = time(::std::ptr::null_mut()); }
+        
+        let anothertime: time_t = atime - 100;
+        
+        let mut result: c_double = 0f64;
+        
+        unsafe { result = difftime(atime, anothertime); }
+        
+        assert_eq!(100f64, result);
+        
+        unsafe { result = difftime(anothertime, atime); }
+        
+        assert_eq!(-100f64, result);
+    }
     
     #[test]
     fn test_timespec_valid() {
