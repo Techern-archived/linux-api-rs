@@ -10,3 +10,9 @@ rust:
  - "stable"
  - "beta"
  - "nightly"
+ 
+ #Let's roll a custom script so we can test everything, hey?
+ script:
+  - cargo build --verbose
+  - cargo test --verbose
+  - cargo doc --verbose
