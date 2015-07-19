@@ -224,8 +224,20 @@ pub const NSEC_PER_SEC: ::c_long = 1000000000;
 ///The number of femtoseconds in a second
 pub const FSEC_PER_SEC: ::c_longlong = 1000000000000000;
 
+#[cfg(any(target_arch = "x86",
+          target_arch = "le32",
+          target_arch = "powerpc",
+          target_arch = "arm",
+          target_arch = "mips",
+          target_arch = "mipsel"))]
+pub const TIME_T_MAX: ::time_t = 0b01111111111111111111111111111111;
+
+#[cfg(any(target_arch = "x86_64",
+          target_arch = "aarch64"))]
+pub const TIME_T_MAX: ::time_t = 0b0111111111111111111111111111111111111111111111111111111111111111;
+
 ///The maximum value of a time64_t
-//pub const TIME64_MAX: ::c_longlong = ((1u64 << 63) as i64);
+pub const TIME64_MAX: ::c_longlong = 0b0111111111111111111111111111111111111111111111111111111111111111;
 
 ///The maximum value of a ktime_t
 pub const KTIME_MAX: ::c_longlong = 9_223_372_036_854_775_807;
@@ -236,6 +248,29 @@ pub const KTIME_SEC_MAX: ::c_longlong = 9_223_372_036;
 #[cfg(test)]
 mod tests {
     use super::*;
+    
+    #[cfg(any(target_arch = "x86_64",
+              target_arch = "aarch64"))]
+    #[test]
+    fn test_time_t_max_64() {
+        assert_eq!(9223372036854775807, TIME64_MAX);
+    }
+    
+    #[cfg(any(target_arch = "x86",
+              target_arch = "le32",
+              target_arch = "powerpc",
+              target_arch = "arm",
+              target_arch = "mips",
+              target_arch = "mipsel"))]
+    #[test]
+    fn test_time_t_max_32() {
+        assert_eq!(2147483647, TIME64_MAX);
+    }
+    
+    #[test]
+    fn test_time64_max() {
+        assert_eq!(9223372036854775807, TIME64_MAX);
+    }
     
     #[test]
     fn test_timeval_to_msec_sec() {

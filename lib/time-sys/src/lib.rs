@@ -89,13 +89,28 @@ pub fn set_normalized_timespec(ts: &mut timespec, sec: time_t, nsec: i64) {
     ts.tv_nsec = realnsec;
 }
 
-//TODO: timespec_add_safe
-
 ///Adds two timespecs together, returning the result as a new timespec
 pub fn timespec_add(lhs: &timespec, rhs: &timespec) -> timespec {
     let mut ts_delta: timespec = timespec::new();
     set_normalized_timespec(&mut ts_delta, lhs.tv_sec + rhs.tv_sec, lhs.tv_nsec + rhs.tv_nsec);
     ts_delta
+}
+
+///Adds two timespecs together and checks for overflow
+pub fn timespec_add_safe(lhs: &timespec, rhs: &timespec) -> timespec {
+
+    //It's no use using the original C method since Rust protects us from overflows! :D
+    //First, some Rust-specific checks to ensure no overflowing since it will just panic
+    let checked_result: Option<time_t> = lhs.tv_sec.checked_add(rhs.tv_sec);
+        
+    if checked_result.is_none() {
+        let mut ts_delta: timespec = timespec::new();
+        set_normalized_timespec(&mut ts_delta, 0, lhs.tv_nsec + rhs.tv_nsec);
+        ts_delta.tv_sec = TIME_T_MAX;
+        return ts_delta;        
+    } else {
+        return timespec_add(&lhs, &rhs);
+    }
 }
 
 ///Subtracts rhs from lhs, returning the difference as a new timespec
@@ -420,6 +435,14 @@ mod test {
         
         assert_eq!(111, delta.tv_sec);
         assert_eq!(400, delta.tv_nsec);
+    }
+    
+    #[test]
+    fn test_timespec_add_safe_overflow() {
+        let lhs = timespec::from_seconds(TIME_T_MAX - 500);
+        let rhs = timespec::from_seconds(600);
+        
+        assert_eq!(TIME_T_MAX, timespec_add_safe(&lhs, &rhs).tv_sec);
     }
     
     #[test]
