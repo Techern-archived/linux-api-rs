@@ -15,4 +15,5 @@ rust:
 script:
  - cargo build --verbose
  - cargo test --verbose
- - cargo doc --verbose
+#Now we test each subproject
+ - cargo test --verbose -p time-sys
