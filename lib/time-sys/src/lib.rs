@@ -93,14 +93,14 @@ pub fn set_normalized_timespec(ts: &mut timespec, sec: time_t, nsec: i64) {
 
 ///Adds two timespecs together, returning the result as a new timespec
 pub fn timespec_add(lhs: &timespec, rhs: &timespec) -> timespec {
-    let mut ts_delta: timespec = timespec { tv_sec:0, tv_nsec: 0 };
+    let mut ts_delta: timespec = timespec::new();
     set_normalized_timespec(&mut ts_delta, lhs.tv_sec + rhs.tv_sec, lhs.tv_nsec + rhs.tv_nsec);
     ts_delta
 }
 
 ///Subtracts rhs from lhs, returning the difference as a new timespec
 pub fn timespec_sub(lhs: &timespec, rhs: &timespec) -> timespec {
-    let mut ts_delta: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+    let mut ts_delta: timespec = timespec::new();
     set_normalized_timespec(&mut ts_delta, lhs.tv_sec - rhs.tv_sec, lhs.tv_nsec - rhs.tv_nsec);
     ts_delta
 }
@@ -198,7 +198,7 @@ mod test {
     
     #[test]
     fn test_clock_times() {
-        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        let mut spec: timespec = timespec::new();
         
         let raw_spec = &mut spec as *mut timespec;
         
@@ -213,7 +213,7 @@ mod test {
     
     #[test]
     fn test_clock_res() {
-        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        let mut spec: timespec = timespec::new();
         
         let raw_spec = &mut spec as *mut timespec;
         
@@ -252,7 +252,7 @@ mod test {
     
     #[test]
     fn test_gettimeofday_ffi() {
-        let mut time = timeval { tv_sec: 0, tv_usec: 0 };
+        let mut time = timeval::new();
         
         let raw_time = &mut time as *mut timeval;
         
@@ -276,14 +276,14 @@ mod test {
     
     #[test]
     fn test_timespec_too_many_seconds_valid() {
-        let atime: timespec = timespec { tv_sec: KTIME_SEC_MAX + 365, tv_nsec: 4262 };
+        let atime: timespec = timespec::from_seconds(KTIME_SEC_MAX + 365);
         
         assert!(!timespec_valid_strict(&atime));
     }
     
     #[test]
     fn test_timespec_before_1970_invalid() {
-        let atime: timespec = timespec { tv_sec: -63, tv_nsec: 4262 };
+        let atime: timespec = timespec::from_seconds(-63);
         
         assert!(!timespec_valid(&atime));
     }
@@ -304,7 +304,7 @@ mod test {
     
     #[test]
     fn test_timeval_before_1970_invalid() {
-        let atime: timeval = timeval { tv_sec: -63, tv_usec: 4262 };
+        let atime: timeval = timeval::from_seconds(-42562);
         
         assert!(!timeval_valid(&atime));
     }
@@ -334,55 +334,55 @@ mod test {
     
     #[test]
     fn test_timespec_compare_same() {
-        let one = timespec { tv_sec: 10, tv_nsec: 0 };
-        let two = timespec { tv_sec: 10, tv_nsec: 0 };
+        let one = timespec::from_seconds(10);
+        let two = timespec::from_seconds(10);
         
         assert_eq!(0, timespec_compare(&one, &two));
     }
     
     #[test]
     fn test_timespec_compare_larger() {
-        let one = timespec { tv_sec: 11, tv_nsec: 0 };
-        let two = timespec { tv_sec: 10, tv_nsec: 0 };
+        let one = timespec::from_seconds(11);
+        let two = timespec::from_seconds(10);
         
         assert_eq!(1, timespec_compare(&one, &two));
     }
     
     #[test]
     fn test_timespec_compare_smaller() {
-        let one = timespec { tv_sec: 9, tv_nsec: 0 };
-        let two = timespec { tv_sec: 10, tv_nsec: 0 };
+        let one = timespec::from_seconds(9);
+        let two = timespec::from_seconds(10);
         
         assert_eq!(-1, timespec_compare(&one, &two));
     }
     
     #[test]
     fn test_timeval_compare_same() {
-        let one = timeval { tv_sec: 10, tv_usec: 0 };
-        let two = timeval { tv_sec: 10, tv_usec: 0 };
+        let one = timeval::from_seconds(10);
+        let two = timeval::from_seconds(10);
         
         assert_eq!(0, timeval_compare(&one, &two));
     }
     
     #[test]
     fn test_timeval_compare_larger() {
-        let one = timeval { tv_sec: 11, tv_usec: 0 };
-        let two = timeval { tv_sec: 10, tv_usec: 0 };
+        let one = timeval::from_seconds(11);
+        let two = timeval::from_seconds(10);
         
         assert_eq!(1, timeval_compare(&one, &two));
     }
     
     #[test]
     fn test_timeval_compare_smaller() {
-        let one = timeval { tv_sec: 9, tv_usec: 0 };
-        let two = timeval { tv_sec: 10, tv_usec: 0 };
+        let one = timeval::from_seconds(9);
+        let two = timeval::from_seconds(10);
         
         assert_eq!(-1, timeval_compare(&one, &two));
     }
     
     #[test]
     fn test_normalized_timespec_many_nanos() {
-        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        let mut spec: timespec = timespec::new();
         
         set_normalized_timespec(&mut spec, 10, NSEC_PER_SEC * 20);
         
@@ -392,7 +392,7 @@ mod test {
     
     #[test]
     fn test_normalized_timespec_negative_nanos() {
-        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        let mut spec: timespec = timespec::new();
         
         set_normalized_timespec(&mut spec, 5, -800);
         
