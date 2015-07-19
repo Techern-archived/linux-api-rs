@@ -23,8 +23,18 @@ impl timespec {
     }
     
     ///Creates a new timespec from the specified number of seconds
-    pub fn from_seconds(seconds: ::time_t) -> timespec {
+    pub fn from_seconds(seconds: i64) -> timespec {
         timespec { tv_sec: seconds, tv_nsec: 0 }
+    }
+    
+    ///Gets a representation of this timespec as a number of milliseconds
+    pub fn to_milliseconds(&self) -> i64 {
+        (self.tv_sec as i64 * MSEC_PER_SEC) + (self.tv_nsec as i64 / NSEC_PER_MSEC)
+    }
+    
+    ///Gets a representation of this timespec as a number of seconds
+    pub fn to_seconds(&self) -> i64 {
+        self.to_milliseconds() / MSEC_PER_SEC
     }
     
     ///Clears this timespec, setting each value to zero
@@ -58,6 +68,16 @@ impl timeval {
     ///Creates a new timeval from the specified number of seconds
     pub fn from_seconds(seconds: ::time_t) -> timeval {
         timeval { tv_sec: seconds, tv_usec: 0 }
+    }
+    
+    ///Gets a representation of this timeval as a number of milliseconds
+    pub fn to_milliseconds(&self) -> i64 {
+        (self.tv_sec as i64 * MSEC_PER_SEC) + (self.tv_usec as i64 / USEC_PER_MSEC)
+    }
+    
+    ///Gets a representation of this timeval as a number of seconds
+    pub fn to_seconds(&self) -> i64 {
+        self.to_milliseconds() / MSEC_PER_SEC
     }
     
     ///Clears this timeval, setting each value to zero
@@ -216,6 +236,26 @@ pub const KTIME_SEC_MAX: ::c_longlong = 9_223_372_036;
 #[cfg(test)]
 mod tests {
     use super::*;
+    
+    #[test]
+    fn test_timeval_to_msec_sec() {
+        let mut val = ::timeval::from_seconds(4);
+        
+        val.tv_usec += USEC_PER_SEC / 2;
+        
+        assert_eq!(4500, val.to_milliseconds());
+        assert_eq!(4, val.to_seconds());
+    }
+    
+    #[test]
+    fn test_timespec_to_msec_sec() {
+        let mut spec = ::timespec::from_seconds(4);
+        
+        spec.tv_nsec += NSEC_PER_SEC / 2;
+        
+        assert_eq!(4500, spec.to_milliseconds());
+        assert_eq!(4, spec.to_seconds());
+    }
     
     #[test]
     fn test_per_sec_accuracy() {
