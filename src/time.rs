@@ -6,6 +6,7 @@
 ///
 ///If in doubt, assume we're talking about the UNIX epoch.
 #[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct timespec {
     ///The number of seconds contained in this timespec
     pub tv_sec: ::time_t,
@@ -18,6 +19,7 @@ pub struct timespec {
 ///
 ///If in doubt, assume we're talking about the UNIX epoch.
 #[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct timeval {
     ///The number of seconds contained in this timeval
     pub tv_sec: ::time_t,
@@ -30,6 +32,7 @@ pub struct timeval {
 ///
 ///Please note that this does not include the name or country code, only the minutes west of Greenwich and the type of DST correction
 #[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct timezone {
     ///The number of minutes west of Greenwich
     pub tz_minuteswest: ::c_int,
@@ -59,6 +62,7 @@ pub const ITIMER_PROF: ::c_int = 2;
 
 ///An interval timer based on a `timespec`
 #[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct itimerspec {
     ///The period of time this timer should run for (Need to verify)
     pub it_interval: timespec,
@@ -69,6 +73,7 @@ pub struct itimerspec {
 
 ///An interval timer based on a `timeval`
 #[repr(C)]
+#[derive(Debug, Clone, Copy)]
 pub struct itimerval {
     ///The period of time this timer should run for (Need to verify)
     pub it_interval: timeval,
