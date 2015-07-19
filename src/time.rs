@@ -15,6 +15,21 @@ pub struct timespec {
     pub tv_nsec: ::c_long
 }
 
+impl timespec {
+
+    ///Creates a new timespec with both values defaulting to zero
+    pub fn new() -> timespec {
+        timespec { tv_sec: 0, tv_nsec: 0 }
+    }
+    
+    ///Clears this timespec, setting each value to zero
+    pub fn clear(&mut self) {
+        self.tv_sec = 0;
+        self.tv_nsec = 0;
+    }
+
+}
+
 ///A structure that contains the number of seconds and microseconds since an epoch.
 ///
 ///If in doubt, assume we're talking about the UNIX epoch.
@@ -26,6 +41,21 @@ pub struct timeval {
     
     ///The number of microseconds contained in this timeval
     pub tv_usec: ::suseconds_t
+}
+
+impl timeval {
+
+    ///Creates a new timeval with both values defaulting to zero
+    pub fn new() -> timeval {
+        timeval { tv_sec: 0, tv_usec: 0 }
+    }
+    
+    ///Clears this timeval, setting each value to zero
+    pub fn clear(&mut self) {
+        self.tv_sec = 0;
+        self.tv_usec = 0;
+    }
+
 }
 
 ///A structure containing information on the time-based location of a timezone
@@ -181,5 +211,35 @@ mod tests {
     fn test_per_sec_accuracy() {
         assert_eq!(NSEC_PER_MSEC, NSEC_PER_USEC * USEC_PER_MSEC);
         assert_eq!(NSEC_PER_SEC, NSEC_PER_MSEC * MSEC_PER_SEC);
+    }
+    
+    #[test]
+    fn test_timeval_utility_functions() {
+        let mut val: timeval = timeval::new();
+        
+        assert_eq!(0, val.tv_sec);
+        
+        val.tv_usec += 499;
+        
+        assert_eq!(499, val.tv_usec);
+        
+        val.clear();
+        
+        assert_eq!(0, val.tv_usec);
+    }
+    
+    #[test]
+    fn test_timespec_utility_functions() {
+        let mut spec: timespec = timespec::new();
+        
+        assert_eq!(0, spec.tv_sec);
+        
+        spec.tv_nsec += 499;
+        
+        assert_eq!(499, spec.tv_nsec);
+        
+        spec.clear();
+        
+        assert_eq!(0, spec.tv_nsec);
     }
 }
