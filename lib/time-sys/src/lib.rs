@@ -118,6 +118,45 @@ pub fn timeval_valid(tv: &timeval) -> bool {
     return true;
 }
 
+///Creates a time64_t from the supplied year, month, day, hour, minute, and second
+pub fn mktime64(year0: c_uint, mon0: c_uint, day: c_uint, hour: c_uint, min: c_uint, sec: c_uint) -> time64_t {
+    
+    let mut mon = mon0;
+    let mut year = year0;
+    
+    //The kernel tells us to do this. It's basically treating Jan and Feb as months 11 and 12, then pulling the others up by two. Leap year, perhaps?
+    
+    let mut _mon = mon as c_int;
+    
+    _mon -= 2;
+    
+    if _mon <= 0 {
+        mon += 10; //Because we didn't take the two off)
+        year -= 1;
+    } else {
+        mon -= 2; //Because we can
+    }
+    
+    //I'm trusting you here, kernel developers! This is ugly but it had better work
+    
+    let mut result: time64_t = 0;
+    
+    result = (year/4 - year/100 + year/400 + 367*mon/12 + day) as i64;
+    result += year as i64 * 365;
+    result -= 719499;
+    result *= 24;
+    result += hour as i64;
+    result *= 60;
+    result += min as i64;
+    result *= 60;
+    result += sec as i64;
+    
+    //result += (((((year / 4) - (year / 100) + (year / 400) + (367*mon/12) + day + (year * 365)) * 24 + hour) * 60 + min) * 60 + sec) as time64_t;
+    
+    return result;
+    
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -298,6 +337,15 @@ mod test {
         
         assert_eq!(-951, delta.tv_sec);
         assert_eq!(NSEC_PER_SEC - 80, delta.tv_nsec);
+    }
+    
+    #[test]
+    fn test_mktime64_known_dates() {
+        let apocalypse2012: time64_t = 1356048000;
+        let sequential: time64_t = 1234567890;
+        
+        assert_eq!(apocalypse2012, mktime64(2012, 12, 21, 00, 0, 0));
+        assert_eq!(sequential, mktime64(2009, 2, 13, 23, 31, 30));
     }
 
 }
