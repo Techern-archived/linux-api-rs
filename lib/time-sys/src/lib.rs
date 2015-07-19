@@ -28,6 +28,15 @@ extern "C" {
     ///Please use std::ptr::null() for tz on Linux!
     pub fn settimeofday(tv: *const timeval, tz: *const timezone) -> c_int;
     
+    ///Finds the resolution of the specified clock, and if non-null, stores it in the timespec.
+    pub fn clock_getres(clk_id: clockid_t, res: *mut timespec) -> c_int;
+    
+    ///Gets the time according to the specified clock ID and places it into the timespec pointer
+    pub fn clock_gettime(clk_id: clockid_t, tp: *mut timespec) -> c_int;
+    
+    ///Takes the time from the specified timespec and attempts to apply it to the clock based on ID
+    pub fn clock_settime(clk_id: clockid_t, tp: *const timespec) -> c_int;
+    
 }
 
 ///Checks to see if two timespecs are equal
@@ -57,8 +66,7 @@ pub fn timeval_compare(lhs: &timeval, rhs: &timeval) -> c_int {
     return (lhs.tv_usec - rhs.tv_usec) as c_int;
 }
 
-//TODO: mktime64
-//TODO: mktime
+//TODO: mktime?
 
 ///Sets the data contained in the borrowed `timespec` ts to normalized values
 pub fn set_normalized_timespec(ts: &mut timespec, sec: time_t, nsec: i64) {
@@ -81,7 +89,7 @@ pub fn set_normalized_timespec(ts: &mut timespec, sec: time_t, nsec: i64) {
     ts.tv_nsec = realnsec;
 }
 
-//TODO: timespec_add_safe, timespec_sub
+//TODO: timespec_add_safe
 
 ///Adds two timespecs together, returning the result as a new timespec
 pub fn timespec_add(lhs: &timespec, rhs: &timespec) -> timespec {
@@ -187,6 +195,32 @@ pub fn mktime64(year0: c_uint, mon0: c_uint, day: c_uint, hour: c_uint, min: c_u
 mod test {
     use super::*;
     use linux_api::*;
+    
+    #[test]
+    fn test_clock_times() {
+        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        
+        let raw_spec = &mut spec as *mut timespec;
+        
+        unsafe { clock_gettime(CLOCK_REALTIME, raw_spec); }
+        
+        assert!(spec.tv_sec >= 1437311973); //Time of testing
+        
+        unsafe { clock_gettime(CLOCK_TAI, raw_spec); } //Ooooh, atoms *Waves hands around making scary noises*
+        
+        assert!(spec.tv_sec >= 1437312050);
+    }
+    
+    #[test]
+    fn test_clock_res() {
+        let mut spec: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
+        
+        let raw_spec = &mut spec as *mut timespec;
+        
+        unsafe { clock_getres(CLOCK_REALTIME, raw_spec); }
+        
+        assert_eq!(1, spec.tv_nsec);
+    }
     
     #[test]
     fn test_time_ffi() {
