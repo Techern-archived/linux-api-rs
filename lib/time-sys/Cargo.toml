@@ -1,6 +1,6 @@
 [package]
 name = "time-sys"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
 
 description = "Bindings to Linux's time.h and time64.h. Some functions have been replicated, but more are still to come."
