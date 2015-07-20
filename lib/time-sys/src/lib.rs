@@ -1,3 +1,4 @@
+#![cfg(target_os = "linux")]
 //!Bindings and rewrites of include/linux/time.h and include/linux/time64.h
 
 extern crate linux_api;
