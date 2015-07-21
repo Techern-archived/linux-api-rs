@@ -21,4 +21,7 @@ pub type clockid_t = ::c_int;
 pub type pid_t = ::c_int;
 
 ///A type that defines a user ID
-pub type uid_t = ::c_int;
+pub type uid_t = ::c_uint;
+
+///A type that defines a group ID
+pub type gid_t = ::c_uint;
