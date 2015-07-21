@@ -7,7 +7,7 @@ description = "(Not yet working) Bindings to kernel/sys.c"
 
 repository = "https://github.com/Techern/linux-api-rs"
 
-keywords = ["Linux", "kernel", "sys.c"]
+keywords = ["Linux", "kernel"]
 
 license = "MIT"
 
