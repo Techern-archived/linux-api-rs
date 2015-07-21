@@ -16,3 +16,4 @@ license = "MIT"
 [dev-dependencies]
 
 time-sys = { version = "*", path = "lib/time-sys" }
+linux-api-sys = { version = "*", path = "lib/linux-api-sys" }

@@ -17,3 +17,4 @@ script:
  - cargo test --verbose
 #Now we test each subproject
  - cargo test --verbose -p time-sys
+ - cargo test --verbose -p linux-api-sys
