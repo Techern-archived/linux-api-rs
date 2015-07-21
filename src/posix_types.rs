@@ -4,6 +4,8 @@
 //!
 //! For the best result, use http://lxr.free-electrons.com
 
+
+
 #[cfg(any(target_arch="sparc", target_arch="parisc"))]
 ///A type that defines microseconds. Since you're using either SPARC or (pa)RISC, it is a c_int
 pub type suseconds_t = ::c_int;
@@ -14,3 +16,9 @@ pub type suseconds_t = ::c_long;
 
 ///A type that defines a clock ID. As of 4.1, this is always c_int
 pub type clockid_t = ::c_int;
+
+///A type that defines a Process or Thread Group ID
+pub type pid_t = ::c_int;
+
+///A type that defines a user ID
+pub type uid_t = ::c_int;
