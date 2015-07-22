@@ -1,9 +1,9 @@
 [package]
 name = "linux-api-exit"
-version = "0.0.0"
+version = "0.1.1"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
 
-description = "(Not yet working) Bindings to kernel/exit.c"
+description = "Bindings to kernel/exit.c"
 
 repository = "https://github.com/Techern/linux-api-rs"
 
