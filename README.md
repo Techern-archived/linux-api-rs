@@ -13,3 +13,4 @@ Currently, it is in very early development, so what you are looking for probably
 ###Reserved packages
 
  * [linux-api-sys ![Crates.io](https://img.shields.io/crates/v/linux-api-sys.svg)](https://crates.io/crates/linux-api-sys)
+ * [linux-api-exit ![Crates.io](https://img.shields.io/crates/v/linux-api-exit.svg)](https://crates.io/crates/linux-api-exit)
