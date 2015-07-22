@@ -1,7 +1,4 @@
 //! This is a very early work-in-progress binding to various Linux Kernel APIs.
-//!
-//! It is not yet ready for use in your projects. Once version 0.1 or higher
-//! is released, you are welcome to start using it :)
 
 #![cfg(target_os="linux")]
 
@@ -10,6 +7,7 @@
 #![allow(dead_code)]
 
 //Okay, let's import our internal modules
+pub mod cstdlib;
 pub mod posix_types;
 pub mod time;
 
@@ -18,6 +16,7 @@ pub use std::os::raw::*;
 pub use std::os::linux::raw::*; //Needed for time_t, dev_t, etc
 
 //And re-export our modules
+pub use cstdlib::*;
 pub use posix_types::*;
 pub use time::*;
 
