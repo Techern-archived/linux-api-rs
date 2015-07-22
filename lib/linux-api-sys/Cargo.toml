@@ -1,9 +1,9 @@
 [package]
 name = "linux-api-sys"
-version = "0.0.0"
+version = "0.0.1"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
 
-description = "(Not yet working) Bindings to kernel/sys.c"
+description = "Preliminary bindings to kernel/sys.c"
 
 repository = "https://github.com/Techern/linux-api-rs"
 
