@@ -17,3 +17,4 @@ license = "MIT"
 
 time-sys = { version = "*", path = "lib/time-sys" }
 linux-api-sys = { version = "*", path = "lib/linux-api-sys" }
+linux-api-exit = { version = "*", path = "lib/linux-api-exit" }
