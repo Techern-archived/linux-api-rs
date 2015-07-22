@@ -25,3 +25,19 @@ pub type uid_t = ::c_uint;
 
 ///A type that defines a group ID
 pub type gid_t = ::c_uint;
+
+#[cfg(target_arch="x86")]
+///A kernel type for long, set to c_longlong snice you're on x86
+pub type __kernel_long_t = ::c_longlong;
+
+#[cfg(not(target_arch="x86"))]
+///A kernel type for long, set to c_long since you're not on x86
+pub type __kernel_long_t = ::c_long;
+
+#[cfg(target_arch="x86")]
+///A kernel type for ulong, set to c_ulonglong snice you're on x86
+pub type __kernel_ulong_t = ::c_ulonglong;
+
+#[cfg(not(target_arch="x86"))]
+///A kernel type for ulong, set to c_ulong since you're not on x86
+pub type __kernel_ulong_t = ::c_ulong;
