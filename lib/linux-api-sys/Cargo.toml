@@ -12,7 +12,7 @@ keywords = ["Linux", "kernel"]
 license = "MIT"
 
 [dependencies]
-linux-api = { version = ">= 0.0.3", path = "../.." } # 0.0.4 or 0.0.5 should suffice once it is released
+linux-api = { version = ">= 0.0.4", path = "../.." } # 0.0.4 or should suffice for now
 
 [dev-dependencies]
 
