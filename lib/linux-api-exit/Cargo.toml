@@ -12,7 +12,7 @@ keywords = ["Linux", "kernel"]
 license = "MIT"
 
 [dependencies]
-linux-api = { version = ">= 0.0.4", path = "../.." } # Just require 0.0.3
+linux-api = { version = ">= 0.0.4", path = "../.." } # 0.0.4 required for EXIT_SUCCESS / EXIT_FAILURE
 
 [dev-dependencies]
 
