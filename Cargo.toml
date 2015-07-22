@@ -1,6 +1,6 @@
 [package]
 name = "linux-api"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
 
 description = "Types and constants for Linux API bindings. Actual bindings can be found in additional crates found in dev-dependencies"
