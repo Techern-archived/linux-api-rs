@@ -25,8 +25,20 @@ pub use unistd::*;
 //Okay, we'll define syscall() here since almost every crate will depend on it.
 extern {
 
-    pub fn syscall(system_call_number: ::c_long, ...) -> ::c_long;
+    pub fn syscall(num: ::c_long, ...) -> ::c_int;
+    
+    pub fn __errno_location() -> *mut ::c_int;
 
+}
+
+pub fn get_last_error_number() -> ::c_int {
+        
+    unsafe {
+        let pointer = (__errno_location());
+        
+        return ::std::ptr::read(pointer);
+    }
+    
 }
 
 #[cfg(test)]
