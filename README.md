@@ -1,6 +1,8 @@
 #Linux-API-rs [![Build Status](https://travis-ci.org/Techern/linux-api-rs.svg?branch=master)](https://travis-ci.org/Techern/linux-api-rs) [![Crates.io](https://img.shields.io/crates/v/linux-api.svg)](https://crates.io/crates/linux-api)
 
-Linux-API-rs is a Rust binding to various Linux APIs.
+Programmer-friendly **safe** bindings to the Linux kernel
+
+(Well, they will be safe after the next package bump)
 
 Currently, it is in very early development, so what you are looking for probably hasn't been completed yet.
 
@@ -9,8 +11,9 @@ Currently, it is in very early development, so what you are looking for probably
 ###Active packages
 
  * [time-sys ![Crates.io](https://img.shields.io/crates/v/time-sys.svg)](https://crates.io/crates/time-sys)
+ * [linux-api-sys ![Crates.io](https://img.shields.io/crates/v/linux-api-sys.svg)](https://crates.io/crates/linux-api-sys)
+ * [linux-api-exit ![Crates.io](https://img.shields.io/crates/v/linux-api-exit.svg)](https://crates.io/crates/linux-api-exit)
  
 ###Reserved packages
 
- * [linux-api-sys ![Crates.io](https://img.shields.io/crates/v/linux-api-sys.svg)](https://crates.io/crates/linux-api-sys)
- * [linux-api-exit ![Crates.io](https://img.shields.io/crates/v/linux-api-exit.svg)](https://crates.io/crates/linux-api-exit)
+ * More coming shortly
