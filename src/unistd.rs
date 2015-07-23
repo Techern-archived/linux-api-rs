@@ -453,7 +453,20 @@ pub mod nios2_unistd_extensions {
 #[cfg(target_arch = "openrisc")]
 pub mod openrisc_unistd_extensions {
 
-    pub const __NR_OR1k_ATOMIC: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL;
+    pub const __NR_OR1K_ATOMIC: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL;
+
+}
+
+#[cfg(target_arch = "tile")]
+pub mod tile_unistd_extensions {
+
+    pub const __NR_CACHEFLUSH: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 1;
+    
+    pub const __NR_FAST_CMPXCHG: ::c_long = -1;
+    pub const __NR_FAST_ATOMIC_UPDATE: ::c_long = -2;
+    pub const __NR_FAST_CMPXCHG64: ::c_long = -3;
+    
+    pub const __NR_CMPXCHF_BADADDR: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL; // Bloody + 0 again
 
 }
 
