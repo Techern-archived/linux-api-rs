@@ -416,6 +416,16 @@ pub mod common_unistd {
     
 }
 
+#[cfg(target_arch = "arc")]
+pub mod arc_unistd_extensions {
+
+    pub const __NR_CACHEFLUSH: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL;// + 0 (What?)
+    pub const __NR_ARC_SETTLS: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 1;
+    pub const __NR_ARC_GETTLS: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 2;
+    pub const __NR_SYSFS: ::c_long = __NR_ARCH_SPECIFIC_SYSCAL + 3;
+
+}
+
 #[cfg(not(any(target_arch = "alpha",
               target_arch = "arm",
               target_arch = "avr32",
@@ -434,3 +444,6 @@ pub mod common_unistd {
               target_arch = "sh",
               target_arch = "sparc")))]
 pub use self::common_unistd::*;
+
+#[cfg(target_arch = "arc")]
+pub use self::arc_unistd_extensions::*;
