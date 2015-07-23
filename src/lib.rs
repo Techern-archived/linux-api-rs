@@ -10,6 +10,7 @@
 pub mod cstdlib;
 pub mod posix_types;
 pub mod time;
+pub mod unistd;
 
 pub use std::os::*;
 pub use std::os::raw::*;
@@ -19,6 +20,7 @@ pub use std::os::linux::raw::*; //Needed for time_t, dev_t, etc
 pub use cstdlib::*;
 pub use posix_types::*;
 pub use time::*;
+pub use unistd::*;
 
 #[cfg(test)]
 mod tests {
