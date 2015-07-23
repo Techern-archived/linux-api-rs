@@ -41,8 +41,33 @@ pub fn get_last_error_number() -> ::c_int {
     
 }
 
+extern {
+
+    //pub fn syscall(num: ::c_long, ...) -> ::c_int; TODO: Check this, exit() does not work via syscall. Check branch `unistd-syscall-rewrite`
+    
+    ///Gets the pointer of the last error number's location
+    pub fn __errno_location() -> *mut ::c_int;
+
+}
+
+///Gets the last error number
+pub fn get_last_error_number() -> ::c_int {
+        
+    unsafe {
+        let pointer = __errno_location();
+        
+        return ::std::ptr::read(pointer);
+    }
+    
+}
+
 #[cfg(test)]
 mod tests {
+
+    #[test]
+    fn no_errors_means_no_stupid_error() {
+        assert_eq!(0, ::get_last_error_number());
+    }
 
     #[allow(unused_variables)]
     #[test]
