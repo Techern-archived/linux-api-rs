@@ -22,6 +22,13 @@ pub use posix_types::*;
 pub use time::*;
 pub use unistd::*;
 
+//Okay, we'll define syscall() here since almost every crate will depend on it.
+extern {
+
+    pub fn syscall(system_call_number: ::c_long, ...) -> ::c_long;
+
+}
+
 #[cfg(test)]
 mod tests {
 

@@ -3,7 +3,7 @@ name = "linux-api"
 version = "0.0.4"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
 
-description = "Types and constants for Linux API bindings. Actual bindings can be found in additional crates found in dev-dependencies"
+description = "Parent crate for programmer-friendly Linux API bindings. Global types are defined here, more specific ones can be found in each additional crate"
 
 repository = "https://github.com/Techern/linux-api-rs"
 
