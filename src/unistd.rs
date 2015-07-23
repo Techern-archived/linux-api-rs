@@ -443,6 +443,13 @@ pub mod metag_unistd_extensions {
 
 }
 
+#[cfg(target_arch = "nios2")]
+pub mod nios2_unistd_extensions {
+
+    pub const __NR_CACHEFLUSH: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL;
+
+}
+
 #[cfg(not(any(target_arch = "alpha",
               target_arch = "arm",
               target_arch = "avr32",
@@ -470,3 +477,6 @@ pub use self::c6x_unistd_extensions::*;
 
 #[cfg(target_arch = "metag")]
 pub use self::metag_unistd_extensions::*;
+
+#[cfg(target_arch = "nios2")]
+pub use self::nios2_unistd_extensions::*;
