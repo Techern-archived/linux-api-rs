@@ -206,8 +206,13 @@ pub mod errno_common {
     ///Invalid slot
     pub const EBADSLT: ::c_int = 57;
     
+    #[cfg(not(target_arch = "powerpc"))]
     ///A deadlock would occur, again
     pub const EDEADLOCK: ::c_int = EDEADLK;
+    
+    #[cfg(target_arch = "powerpc")]
+    ///A deadlock would occur, again
+    pub const EDEADLOCK: ::c_int = 58;
     
     ///Bad font file format
     pub const EBFONT: ::c_int = 59;
