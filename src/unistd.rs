@@ -450,6 +450,13 @@ pub mod nios2_unistd_extensions {
 
 }
 
+#[cfg(target_arch = "openrisc")]
+pub mod openrisc_unistd_extensions {
+
+    pub const __NR_OR1k_ATOMIC: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL;
+
+}
+
 #[cfg(not(any(target_arch = "alpha",
               target_arch = "arm",
               target_arch = "avr32",
@@ -480,3 +487,6 @@ pub use self::metag_unistd_extensions::*;
 
 #[cfg(target_arch = "nios2")]
 pub use self::nios2_unistd_extensions::*;
+
+#[cfg(target_arch = "openrisc")]
+pub use self::openrisc_unistd_extensions::*;
