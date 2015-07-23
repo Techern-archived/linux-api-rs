@@ -1,0 +1,47 @@
+#[cfg(not(any(target_arch = "alpha",
+              target_arch = "arm",
+              target_arch = "avr32",
+              target_arch = "blackfin",
+              target_arch = "cris",
+              target_arch = "frv",
+              target_arch = "ia64",
+              target_arch = "m32r",
+              target_arch = "m68k",
+              target_arch = "microblaze",
+              target_arch = "mips",
+              target_arch = "mn10300",
+              target_arch = "parisc",
+              target_arch = "powerpc",
+              target_arch = "s390",
+              target_arch = "sh",
+              target_arch = "sparc",
+              target_arch = "x86",
+              target_arch = "x86_64")))]
+pub mod common;
+
+#[cfg(target_arch = "x86")]
+pub mod x86;
+
+#[cfg(not(any(target_arch = "alpha",
+              target_arch = "arm",
+              target_arch = "avr32",
+              target_arch = "blackfin",
+              target_arch = "cris",
+              target_arch = "frv",
+              target_arch = "ia64",
+              target_arch = "m32r",
+              target_arch = "m68k",
+              target_arch = "microblaze",
+              target_arch = "mips",
+              target_arch = "mn10300",
+              target_arch = "parisc",
+              target_arch = "powerpc",
+              target_arch = "s390",
+              target_arch = "sh",
+              target_arch = "sparc",
+              target_arch = "x86",
+              target_arch = "x86_64")))]
+pub use common::*;
+
+#[cfg(target_arch = "x86")]
+pub use x86::*;

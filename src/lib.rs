@@ -25,25 +25,8 @@ pub use unistd::*;
 //Okay, we'll define syscall() here since almost every crate will depend on it.
 extern {
 
+    ///Executes a system call
     pub fn syscall(num: ::c_long, ...) -> ::c_int;
-    
-    pub fn __errno_location() -> *mut ::c_int;
-
-}
-
-pub fn get_last_error_number() -> ::c_int {
-        
-    unsafe {
-        let pointer = (__errno_location());
-        
-        return ::std::ptr::read(pointer);
-    }
-    
-}
-
-extern {
-
-    //pub fn syscall(num: ::c_long, ...) -> ::c_int; TODO: Check this, exit() does not work via syscall. Check branch `unistd-syscall-rewrite`
     
     ///Gets the pointer of the last error number's location
     pub fn __errno_location() -> *mut ::c_int;
