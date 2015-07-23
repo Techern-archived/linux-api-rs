@@ -37,8 +37,13 @@ pub mod errno_base {
     ///Alternatively, your name is Anthony Dinozzo Jr or Richard Castle
     pub const ECHILD: ::c_int = 10;
     
+    #[cfg(not(target_arch = "alpha"))]
     ///Try again, I'm not really an error, just an annoyance
     pub const EAGAIN: ::c_int = 11;
+    
+    #[cfg(target_arch = "alpha")]
+    ///Try again, I'm not really an error, just an annoyance
+    pub const EAGAIN: ::c_int = 35;
     
     ///Out of memory
     pub const ENOMEM: ::c_int = 12;
