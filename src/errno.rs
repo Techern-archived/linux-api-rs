@@ -123,6 +123,8 @@ pub mod errno_base {
 
 }
 
+pub use self::errno_base::*;
+
 #[cfg(not(any(target_arch = "alpha", target_arch = "mips", target_arch = "parisc", target_arch = "sparc")))]
 pub mod errno_common {
 
@@ -459,8 +461,6 @@ pub mod errno_common {
     pub const EHWPOISON: ::c_int = 133;
 
 }
-
-pub use self::errno_base::*;
 
 #[cfg(not(any(target_arch = "alpha", target_arch = "mips", target_arch = "parisc", target_arch = "sparc")))]
 pub use self::errno_common::*;
