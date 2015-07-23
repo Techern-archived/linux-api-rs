@@ -150,7 +150,7 @@ pub mod errno_common {
     pub const ELOOP: ::c_int = 40;
     
     ///Operation would block. You should try again?
-    pub const EWOULDBLOCK: ::c_int = self::errno_base::EAGAIN;
+    pub const EWOULDBLOCK: ::c_int = ::EAGAIN;
     
     ///No message of the desired type
     pub const ENOMSG: ::c_int = 42;
