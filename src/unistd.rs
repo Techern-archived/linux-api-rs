@@ -433,6 +433,16 @@ pub mod c6x_unistd_extensions {
 
 }
 
+#[cfg(target_arch = "metag")]
+pub mod metag_unistd_extensions {
+
+    pub const __NR_METAG_SETGLOBALBIT: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 1; //Finally! Somebody that makes sense! :)
+    pub const __NR_METAG_SET_FPU_FLAGS: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 2;
+    pub const __NR_METAG_SET_TLS: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 3;
+    pub const __NR_METAG_GET_TLS: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL + 4;
+
+}
+
 #[cfg(not(any(target_arch = "alpha",
               target_arch = "arm",
               target_arch = "avr32",
@@ -457,3 +467,6 @@ pub use self::arc_unistd_extensions::*;
 
 #[cfg(target_arch = "c6x")]
 pub use self::c6x_unistd_extensions::*;
+
+#[cfg(target_arch = "metag")]
+pub use self::metag_unistd_extensions::*;
