@@ -426,6 +426,13 @@ pub mod arc_unistd_extensions {
 
 }
 
+#[cfg(target_arch = "c6x")]
+pub mod c6x_unistd_extensions {
+
+    pub const __NR_CACHE_SYNC: ::c_long = __NR_ARCH_SPECIFIC_SYSCALL;// + 0, why are they doing this?
+
+}
+
 #[cfg(not(any(target_arch = "alpha",
               target_arch = "arm",
               target_arch = "avr32",
@@ -447,3 +454,6 @@ pub use self::common_unistd::*;
 
 #[cfg(target_arch = "arc")]
 pub use self::arc_unistd_extensions::*;
+
+#[cfg(target_arch = "c6x")]
+pub use self::c6x_unistd_extensions::*;
