@@ -10,16 +10,23 @@ use linux_api::{c_int};
 
 extern {
 
-    ///Exits the current process with the specified error code
+    ///Exits the current process with the specified exit code
     ///
     ///You should use either linux_api::EXIT_SUCCESS or linux_api::EXIT_FAILURE
-    pub fn exit(error_code: c_int);
+    pub fn exit(exit_code: c_int);
 
-    ///Exits every process in the current process group with the specified error code
-    ///
-    ///You should use either linux_api::EXIT_SUCCESS or linux_api::EXIT_FAILURE
-    pub fn exit_group(error_code: c_int);
+    //pub fn exit_group(exit_code: c_int); I was advised to remove this since it should never be called in user space, but handled by libc while using exit()
 
+}
+
+///Exits the current process while indicating a successful operation
+pub fn exit_as_success() {
+    unsafe { exit(linux_api::EXIT_SUCCESS); }
+}
+
+///Exits the current process while indicating a failed operation as the cause of exit
+pub fn exit_as_failure() {
+    unsafe { exit(linux_api::EXIT_FAILURE); }
 }
 
 #[cfg(test)]
