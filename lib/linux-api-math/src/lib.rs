@@ -10,7 +10,13 @@ use linux_api::{c_double, c_float,
 #[link(name = "m")] //For -lm
 extern {
 
-    //cos
+    ///Returns the cosine of an angle of X radians
+    pub fn cos(x: c_double) -> c_double;
+    
+    ///Returns the cosine of an angle of X radians
+    pub fn cosf(x: c_float) -> c_float;
+    
+    
     //sin
     //tan
     //acos
@@ -122,6 +128,32 @@ mod test {
     use linux_api::{c_long, c_longlong, c_float, c_double};
     
     use super::*;
+    
+    #[test]
+    fn test_cos() {
+        let pi: c_double = 3.14159265;
+        
+        let degrees: c_double = 60.0;
+        
+        unsafe { 
+            let result = cos(degrees * pi / 180.0);
+            
+            assert!(result.abs_sub(0.5) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_cosf() {
+        let pi: c_float = 3.14159265;
+        
+        let degrees: c_float = 60.0;
+        
+        unsafe { 
+            let result = cosf(degrees * pi / 180.0);
+            
+            assert!(result.abs_sub(0.5) <= 0.000001);
+        }
+    }
     
     #[test]
     fn test_rint() {
