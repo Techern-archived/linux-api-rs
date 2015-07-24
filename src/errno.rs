@@ -842,3 +842,334 @@ pub mod errno_alpha {
 
 #[cfg(target_arch = "alpha")]
 pub use self::errno_alpha::*;
+
+#[cfg(target_arch = "mips")]
+pub mod errno_mips {
+    
+    ///No message of the desired type
+    pub const ENOMSG: ::c_int = 35;
+    
+    ///Identifier was removed
+    pub const EIDRM: ::c_int = 36;
+    
+    ///Channel number is out of acceptable range
+    pub const ECHRNG: ::c_int = 37;
+    
+    ///Level 2 is not synchronized
+    pub const EL2NSYNC: ::c_int = 38;
+    
+    ///Level 3 was halted
+    pub const EL3HLT: ::c_int = 39;
+    
+    ///Level 3 was reset
+    pub const EL3RST: ::c_int = 40;
+
+    ///Link number is out of range
+    ///
+    ///How do you do this?
+    pub const ELNRNG: ::c_int = 41;
+    
+    ///Protocol driver not attached
+    pub const EUNATCH: ::c_int = 42;
+    
+    ///No CSI structure is available
+    pub const ENOCSI: ::c_int = 43;
+    
+    ///Level 2 was halted
+    pub const EL2HLT: ::c_int = 44;
+    
+    ///Resource deadlock would occur
+    pub const EDEADLK: ::c_int = 45;
+    
+    ///No record locks available
+    pub const ENOLCK: ::c_int = 46;
+    
+    ///Invalid exchange
+    pub const EBADE: ::c_int = 50;
+    
+    ///Invalid request descriptor
+    pub const EBADR: ::c_int = 51;
+    
+    ///Exchange is full.
+    pub const EXFULL: ::c_int = 52;
+    
+    ///No anode is available
+    pub const ENOANO: ::c_int = 53;
+    
+    ///Invalid request code
+    pub const EBADRQC: ::c_int = 54;
+    
+    ///Invalid slot
+    pub const EBADSLT: ::c_int = 55;
+    
+    ///A deadlock would occur, again
+    pub const EDEADLOCK: ::c_int = 56;
+    
+    ///Bad font file format
+    pub const EBFONT: ::c_int = 59;
+    
+    ///Device is not a stream
+    pub const ENOSTR: ::c_int = 60;
+    
+    ///No data is available
+    pub const ENODATA: ::c_int = 61;
+    
+    ///Timer expired
+    pub const ETIME: ::c_int = 62;
+    
+    ///Out of streams resources
+    ///
+    ///Should this be stream's? I'm not sure about the context. Is it the resources of the stream, or resources of the system's supply of streams?
+    pub const ENOSR: ::c_int = 63;
+    
+    ///Requested machine was not on the network
+    pub const ENONET: ::c_int = 64;
+    
+    ///Package is not installed
+    pub const ENOPKG: ::c_int = 65;
+    
+    ///Object is remote when it is required to be local
+    pub const EREMOTE: ::c_int = 66;
+    
+    ///Link has been severed
+    pub const ENOLINK: ::c_int = 67;
+    
+    ///Error in advertising
+    pub const EADV: ::c_int = 68;
+    
+    ///Srmount error
+    pub const ESRMNT: ::c_int = 69;
+    
+    ///Communications error on send
+    pub const ECOMM: ::c_int = 70;
+    
+    ///Protocol error
+    pub const EPROTO: ::c_int = 71;
+    
+    ///A RFS-specific error occurred
+    pub const EDOTDOT: ::c_int = 73;
+    
+    ///A multihop was attempted
+    pub const EMULTIHOP: ::c_int = 74;
+    
+    ///Message is not a data message
+    pub const EBADMSG: ::c_int = 77;
+    
+    ///File name is too long. (Hah!)
+    pub const ENAMETOOLONG: ::c_int = 78;
+    
+    ///Value is too large for the defined data type
+    pub const EOVERFLOW: ::c_int = 79;
+    
+    ///Name is not unique on the network
+    pub const ENOTUNIQ: ::c_int = 80;
+    
+    ///File descriptor is in a bad state
+    ///
+    ///Huh. I haven't seen this before
+    pub const EBADFD: ::c_int = 81;
+    
+    ///The remote address changed.
+    ///
+    ///How does this happen? A change from wifi to 4g, etc?
+    pub const EREMCHG: ::c_int = 82;
+    
+    ///Can not access a needed shared library
+    ///
+    ///Thankfully, with Cargo, this shouldn't happen :)
+    pub const ELIBACC: ::c_int = 83;
+    
+    ///Attempted to access a shared library, only to find out it was corrupted
+    pub const ELIBBAD: ::c_int = 84;
+    
+    ///.lib section in a.out is corrupted
+    pub const ELIBSCN: ::c_int = 85;
+    
+    ///Attempting to link in too many shared libraries
+    pub const ELIBMAX: ::c_int = 86;
+    
+    ///Cannot exec a shared library directly
+    pub const ELIBEXEC: ::c_int = 87;
+    
+    ///Illegal byte sequence
+    pub const EILSEQ: ::c_int = 88;
+    
+    ///Invalid system call number
+    ///
+    ///This is special. Arch syscall entry code returns -ENOSYS if 
+    ///users try to call a syscall that doesn't exist.
+    pub const ENOSYS: ::c_int = 89;
+    
+    ///Too many symbolic links encountered. This is probably an infinite loop
+    pub const ELOOP: ::c_int = 90;
+    
+    ///Interrupted system call, you should restart it
+    pub const ERESTART: ::c_int = 91;
+    
+    ///Streams pipe error
+    pub const ESTRPIPE: ::c_int = 92;
+    
+    ///Directory is not empty.
+    pub const ENOTEMPTY: ::c_int = 93;
+    
+    ///Too many users
+    pub const EUSERS: ::c_int = 94;
+    
+    ///Socket operation attempted on an object that is not a socket
+    pub const ENOTSOCK: ::c_int = 95;
+    
+    ///Destination address required
+    pub const EDESTADDRREQ: ::c_int = 96;
+    
+    ///Message is too long
+    pub const EMSGSIZE: ::c_int = 97;
+    
+    ///Protocol type is wrong for this socket
+    pub const EPROTOTYPE: ::c_int = 98;
+    
+    ///Protocol is not available
+    pub const ENOPROTOOPT: ::c_int = 99;
+    
+    ///Protocol is not supported
+    pub const EPROTONOSUPPORT: ::c_int = 120;
+    
+    ///Socket type is not supported
+    ///
+    ///What?
+    pub const ESOCKTNOSUPPORT: ::c_int = 121;
+    
+    ///Operation not supported on transport endpoint
+    pub const EOPNOTSUPP: ::c_int = 122;
+    
+    ///Protocol family is not supported
+    pub const EPFNOSUPPORT: ::c_int = 123;
+    
+    ///Address family is not supported by this protocol
+    pub const EAFNOSUPPORT: ::c_int = 124;
+    
+    ///Address is already in use
+    pub const EADDRINUSE: ::c_int = 125;
+    
+    ///Cannot assign the requested address
+    pub const EADDRNOTAVAIL: ::c_int = 126;
+    
+    ///Network is down
+    pub const ENETDOWN: ::c_int = 127;
+    
+    ///Network is unreachable :(
+    pub const ENETUNREACH: ::c_int = 128;
+    
+    ///Network dropped connection because of a reset
+    pub const ENETRESET: ::c_int = 129;
+    
+    ///Software caused the connection to abort
+    pub const ECONNABORTED: ::c_int = 130;
+    
+    ///Connection was reset by a peer
+    pub const ECONNRESET: ::c_int = 131;
+    
+    ///No buffer space is available
+    pub const ENOBUFS: ::c_int = 132;
+    
+    ///Transport endpoint is already connected
+    pub const EISCONN: ::c_int = 133;
+    
+    ///Transport endpoint is not connected
+    pub const ENOTCONN: ::c_int = 134;
+    
+    ///The structure needs cleaning
+    pub const EUCLEAN: ::c_int = 135;
+    
+    ///This is not a XENIX named type file
+    pub const ENOTNAM: ::c_int = 137;
+    
+    ///No XENIX semaphores are available
+    pub const ENAVAIL: ::c_int = 138;
+    
+    ///This is a named type file
+    pub const EISNAM: ::c_int = 139;
+    
+    ///A remote I/O error occurred
+    pub const EREMOTEIO: ::c_int = 140;
+    
+    ///Reserved for future use
+    pub const EINIT: ::c_int = 141;
+    
+    ///Error 142, seems to be MIPS specific
+    pub const EREMDEV: ::c_int = 142;
+    
+    ///Cannot send after the transport endpoint is shut down
+    pub const ESHUTDOWN: ::c_int = 143;
+    
+    ///Too many references; Cannot splice
+    pub const ETOOMANYREFS: ::c_int = 144;
+    
+    ///Connection timed out
+    pub const ETIMEDOUT: ::c_int = 145;
+    
+    ///Connection was refused
+    pub const ECONNREFUSED: ::c_int = 146;
+    
+    ///The host is down! D:
+    pub const EHOSTDOWN: ::c_int = 147;
+    
+    ///There is no usable route to the host
+    pub const EHOSTUNREACH: ::c_int = 148;
+    
+    ///Operation would block. You should try again?
+    pub const EWOULDBLOCK: ::c_int = ::EAGAIN;
+    
+    ///Operation is already in progress. Be patient!
+    pub const EALREADY: ::c_int = 149;
+    
+    ///Operation is in progress
+    pub const EINPROGRESS: ::c_int = 150;
+    
+    ///The file handle is stale.
+    pub const ESTALE: ::c_int = 151;
+    
+    ///The operation was cancelled
+    pub const ECANCELED: ::c_int = 158;
+    
+    ///No medium was found
+    pub const ENOMEDIUM: ::c_int = 159;
+    
+    ///You're using the wrong medium type
+    pub const EMEDIUMTYPE: ::c_int = 160;
+    
+    ///The required key is not available
+    pub const ENOKEY: ::c_int = 161;
+    
+    ///The key you're using has expired
+    pub const EKEYEXPIRED: ::c_int = 162;
+    
+    ///The key you're using has been revoked
+    pub const EKEYREVOKED: ::c_int = 163;
+    
+    ///The key you're using was rejected by the service you're trying to access
+    pub const EKEYREJECTED: ::c_int = 164;
+    
+    ///Your mutex's owner died. 
+    pub const EOWNERDEAD: ::c_int = 165;
+    
+    ///The state of your mutex is not recoverable
+    pub const ENOTRECOVERABLE: ::c_int = 166;
+    
+    
+    
+    ///Operation is not possible due to RF-kill
+    pub const ERFKILL: ::c_int = 167;
+    
+    
+    
+    ///The memory page has a hardware error
+    pub const EHWPOISON: ::c_int = 168;
+    
+    
+    ///You exceeded your quote
+    pub const EDQUOT: ::c_int = 1133;
+
+}
+
+#[cfg(target_arch = "mips")]
+pub use self::errno_mips::*;
