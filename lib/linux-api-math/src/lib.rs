@@ -41,6 +41,12 @@ extern {
     
     ///Rounds a c_float to the nearest c_longlong
     pub fn llrintf(x: c_float) -> c_longlong;
+    
+    ///Returns the floating-point remainder of numer / denom
+    pub fn remainder(numer: c_double, denom: c_double) -> c_double;
+    
+    ///Returns the floating-point remainder of numer / denom
+    pub fn remainderf(number: c_float, denom: c_float) -> c_float;
 
 }
 
