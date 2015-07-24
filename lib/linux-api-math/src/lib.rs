@@ -28,8 +28,6 @@ extern {
     ///Returns the tangent of an angle of x radians
     pub fn tanf(x: c_float) -> c_float;
 
-
-
     ///Returns the principal value of the arc cosine of x, expressed in radians.
     pub fn acos(x: c_double) -> c_double;
     
@@ -53,20 +51,60 @@ extern {
     
     ///Returns the principal value of the arc tangent of y / x, expressed in radians.
     pub fn atan2f(y: c_float, x: c_float) -> c_float;
+
+    ///Returns the hyperbolic cosine of an angle of X radians
+    pub fn cosh(x: c_double) -> c_double;
     
+    ///Returns the hyperbolic cosine of an angle of X radians
+    pub fn coshf(x: c_float) -> c_float;
     
+    ///Returns the hyperbolic sine of an angle of x radians
+    pub fn sinh(x: c_double) -> c_double;
     
-    //cosh
-    //sinh
-    //tanh
-    //acosh
-    //asinh
-    //atanh
+    ///Returns the hyperbolic sine of an angle of x radians
+    pub fn sinhf(x: c_float) -> c_float;
     
-    //exp
+    ///Returns the hyperbolic tangent of an angle of x radians
+    pub fn tanh(x: c_double) -> c_double;
+    
+    ///Returns the hyperbolic tangent of an angle of x radians
+    pub fn tanhf(x: c_float) -> c_float;
+
+    ///Returns the nonnegative arc hyperbolic cosine of x, expressed in radians.
+    pub fn acosh(x: c_double) -> c_double;
+    
+    ///Returns the nonnegative arc hyperbolic cosine of x, expressed in radians.
+    pub fn acoshf(x: c_float) -> c_float;
+    
+    ///Returns the nonnegative arc hyperbolic sine of x, expressed in radians.
+    pub fn asinh(x: c_double) -> c_double;
+    
+    ///Returns the nonnegative arc hyperbolic sine of x, expressed in radians.
+    pub fn asinhf(x: c_float) -> c_float;
+    
+    ///Returns the nonnegative arc hyperbolic tangent of x, expressed in radians.
+    pub fn atanh(x: c_double) -> c_double;
+    
+    ///Returns the nonnegative arc hyperbolic tangent of x, expressed in radians.
+    ///
+    ///Translation: WORDS, WORDS, WORDS. **I want coffee**
+    pub fn atanhf(x: c_float) -> c_float;
+    
+    ///Returns the base-e exponential function of x, which is e raised to the power x: e^x.
+    pub fn exp(x: c_double) -> c_double;
+    
+    ///Returns the base-e exponential function of x, which is e raised to the power x: e^x.
+    pub fn expf(x: c_float) -> c_float;
+    
     //frexp
     //ldexp
-    //log
+    
+    ///Returns the natural logarithm of x
+    pub fn log(x: c_double) -> c_double;
+    
+    ///Returns the natural logarithm of x
+    pub fn logf(x: c_float) -> c_float;
+    
     //log10
     //modf
     //exp2
@@ -343,6 +381,206 @@ mod test {
             
             assert!(result.abs_sub(135.0) <= 0.000001);
         }
+    }
+    
+    #[test]
+    fn test_cosh() {
+        
+        unsafe {
+        
+            let param: c_double = log(2.0);
+            
+            assert!(cosh(param).abs_sub(1.25) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_coshf() {
+        
+        unsafe {
+        
+            let param: c_float = logf(2.0);
+            
+            assert!(coshf(param).abs_sub(1.25) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_sinh() {
+        
+        unsafe {
+        
+            let param: c_double = log(2.0);
+            
+            assert!(sinh(param).abs_sub(0.75) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_sinhf() {
+        
+        unsafe {
+        
+            let param: c_float = logf(2.0);
+            
+            assert!(sinhf(param).abs_sub(0.75) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_tanh() {
+        
+        unsafe {
+        
+            let param: c_double = log(2.0);
+            
+            assert!(tanh(param).abs_sub(0.6) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_tanhf() {
+        
+        unsafe {
+        
+            let param: c_float = logf(2.0);
+            
+            assert!(tanhf(param).abs_sub(0.6) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_acosh() {
+        
+        unsafe {
+        
+            let param: c_double = exp(2.0) - sinh(2.0);
+            
+            assert!(acosh(param).abs_sub(2.0) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_acoshf() {
+        
+        unsafe {
+        
+            let param: c_float = expf(2.0) - sinhf(2.0);
+            
+            assert!(acoshf(param).abs_sub(2.0) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_asinh() {
+        
+        unsafe {
+        
+            let param: c_double = exp(2.0) - cosh(2.0);
+            
+            assert!(asinh(param).abs_sub(2.0) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_asinhf() {
+        
+        unsafe {
+        
+            let param: c_float = expf(2.0) - coshf(2.0);
+            
+            assert!(asinhf(param).abs_sub(2.0) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_atanh() {
+        
+        unsafe {
+        
+            let param: c_double = tanh(1.0);
+            
+            assert!(atanh(param).abs_sub(1.0) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_atanhf() {
+        
+        unsafe {
+        
+            let param: c_float = tanhf(1.0);
+            
+            assert!(atanhf(param).abs_sub(1.0) <= 0.00001);
+        
+        }
+    
+    }
+    
+    #[test]
+    fn test_exp() {
+    
+        let param: c_double = 5.0;
+        
+        unsafe {
+            assert!(exp(param).abs_sub(148.413159) <= 0.000001);
+        }
+    
+    }
+    
+    #[test]
+    fn test_expf() {
+    
+        let param: c_float = 5.0;
+        
+        unsafe {
+            assert!(expf(param).abs_sub(148.413159) <= 0.000001);
+        }
+    
+    }
+    
+    #[test]
+    fn test_log() {
+    
+        let param: c_double = 5.5;
+        
+        unsafe {
+            assert!(log(param).abs_sub(1.704748) <= 0.000001);
+        }
+    
+    }
+    
+    #[test]
+    fn test_logf() {
+    
+        let param: c_float = 5.5;
+        
+        unsafe {
+            assert!(logf(param).abs_sub(1.704748) <= 0.000001);
+        }
+    
     }
     
     #[test]
