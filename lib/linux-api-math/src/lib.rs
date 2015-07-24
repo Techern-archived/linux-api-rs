@@ -10,15 +10,53 @@ use linux_api::{c_double, c_float,
 #[link(name = "m")] //For -lm
 extern {
 
-    ///Rounds to an integer value in c_double format
-    ///
-    ///If you want an integer format, use lrint instead
-    pub fn nearbyint(x: c_double) -> c_double;
+    //cos
+    //sin
+    //tan
+    //acos
+    //asin
+    //atan
+    //atan2
     
-    ///Rounds to an integer value in c_float format
-    ///
-    ///If you want an integer format, use lrintf instead
-    pub fn nearbyintf(x: c_float) -> c_float;
+    //cosh
+    //sinh
+    //tanh
+    //acosh
+    //asinh
+    //atanh
+    
+    //exp
+    //frexp
+    //ldexp
+    //log
+    //log10
+    //modf
+    //exp2
+    //expm1
+    //ilogb
+    //log1p
+    //log2
+    //logb
+    //scalbn
+    //scalbln
+    
+    //pow
+    //sqrt
+    //cbrt
+    //hopot
+    
+    //erf
+    //erfc
+    //tgamma
+    //lgamma
+    
+    //ceil
+    //floor
+    //fmod
+    //trunc
+    //round
+    //lround
+    //llround
 
     ///Rounds to an integer value in c_double format
     ///
@@ -41,12 +79,37 @@ extern {
     
     ///Rounds a c_float to the nearest c_longlong
     pub fn llrintf(x: c_float) -> c_longlong;
+
+    ///Rounds to an integer value in c_double format
+    ///
+    ///If you want an integer format, use lrint instead
+    pub fn nearbyint(x: c_double) -> c_double;
+    
+    ///Rounds to an integer value in c_float format
+    ///
+    ///If you want an integer format, use lrintf instead
+    pub fn nearbyintf(x: c_float) -> c_float;
     
     ///Returns the floating-point remainder of numer / denom
     pub fn remainder(numer: c_double, denom: c_double) -> c_double;
     
     ///Returns the floating-point remainder of numer / denom
     pub fn remainderf(number: c_float, denom: c_float) -> c_float;
+    
+    //remquo
+    
+    //copysign
+    //nan
+    //nextafter
+    //nexttoward
+    
+    //fdim
+    //fmax
+    //fmin
+    
+    //fabs
+    //abs
+    //fma
 
 }
 
