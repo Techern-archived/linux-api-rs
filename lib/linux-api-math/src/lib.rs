@@ -27,11 +27,34 @@ extern {
     
     ///Returns the tangent of an angle of x radians
     pub fn tanf(x: c_float) -> c_float;
+
+
+
+    ///Returns the principal value of the arc cosine of x, expressed in radians.
+    pub fn acos(x: c_double) -> c_double;
     
-    //acos
-    //asin
-    //atan
-    //atan2
+    ///Returns the principal value of the arc cosine of x, expressed in radians.
+    pub fn acosf(x: c_float) -> c_float;
+    
+    ///Returns the principal value of the arc sine of x, expressed in radians.
+    pub fn asin(x: c_double) -> c_double;
+    
+    ///Returns the principal value of the arc sine of x, expressed in radians.
+    pub fn asinf(x: c_float) -> c_float;
+    
+    ///Returns the principal value of the arc tangent of x, expressed in radians.
+    pub fn atan(x: c_double) -> c_double;
+    
+    ///Returns the principal value of the arc tangent of x, expressed in radians.
+    pub fn atanf(x: c_float) -> c_float;
+    
+    ///Returns the principal value of the arc tangent of y / x, expressed in radians.
+    pub fn atan2(y: c_double, x: c_double) -> c_double;
+    
+    ///Returns the principal value of the arc tangent of y / x, expressed in radians.
+    pub fn atan2f(y: c_float, x: c_float) -> c_float;
+    
+    
     
     //cosh
     //sinh
@@ -213,6 +236,112 @@ mod test {
             let result = tanf(degrees * pi / 180.0);
             
             assert!(result.abs_sub(1.0) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_acos() {
+        let pi: c_double = 3.14159265;
+        
+        let degrees: c_double = 0.5;
+        
+        unsafe { 
+            let result = acos(degrees) * 180.0 / pi;
+            
+            assert!(result.abs_sub(60.0) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_acosf() {
+        let pi: c_float = 3.14159265;
+        
+        let degrees: c_float = 0.5;
+        
+        unsafe { 
+            let result = acosf(degrees) * 180.0 / pi;
+            
+            assert!(result.abs_sub(60.0) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_asin() {
+        let pi: c_double = 3.14159265;
+        
+        let degrees: c_double = 0.5;
+        
+        unsafe { 
+            let result = asin(degrees) * 180.0 / pi;
+            
+            assert!(result.abs_sub(30.0) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_asinf() {
+        let pi: c_float = 3.14159265;
+        
+        let degrees: c_float = 0.5;
+        
+        unsafe { 
+            let result = asinf(degrees) * 180.0 / pi;
+            
+            assert!(result.abs_sub(30.0) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_atan() {
+        let pi: c_double = 3.14159265;
+        
+        let degrees: c_double = 1.0;
+        
+        unsafe { 
+            let result = atan(degrees) * 180.0 / pi;
+            
+            assert!(result.abs_sub(45.0) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_atanf() {
+        let pi: c_float = 3.14159265;
+        
+        let degrees: c_float = 1.0;
+        
+        unsafe { 
+            let result = atanf(degrees) * 180.0 / pi;
+            
+            assert!(result.abs_sub(45.0) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_atan2() {
+        let pi: c_double = 3.14159265;
+        
+        let x: c_double = -10.0;
+        let y: c_double = 10.0;
+        
+        unsafe { 
+            let result = atan2(y, x) * 180.0 / pi;
+            
+            assert!(result.abs_sub(135.0) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_atan2f() {
+        let pi: c_float = 3.14159265;
+        
+        let x: c_float = -10.0;
+        let y: c_float = 10.0;
+        
+        unsafe { 
+            let result = atan2f(y, x) * 180.0 / pi;
+            
+            assert!(result.abs_sub(135.0) <= 0.000001);
         }
     }
     
