@@ -8,6 +8,7 @@
 
 //Okay, let's import our internal modules
 pub mod cstdlib;
+pub mod errno;
 pub mod posix_types;
 pub mod time;
 
@@ -17,6 +18,7 @@ pub use std::os::linux::raw::*; //Needed for time_t, dev_t, etc
 
 //And re-export our modules
 pub use cstdlib::*;
+pub use errno::*;
 pub use posix_types::*;
 pub use time::*;
 
