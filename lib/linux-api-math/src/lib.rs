@@ -56,7 +56,7 @@ mod test {
 
     extern crate linux_api;
     
-    use linux_api::{c_long, c_longlong};
+    use linux_api::{c_long, c_longlong, c_float, c_double};
     
     use super::*;
     
@@ -158,6 +158,26 @@ mod test {
         
         assert_eq!(4687329, result);
         
+    }
+    
+    #[test]
+    fn test_remainder() {
+        let number: c_double = 18.5;
+        let denominator: c_double = 4.2;
+        
+        unsafe {
+            assert!(remainder(number, denominator).abs_sub(1.7) <= 0.0000001);
+        }
+    }
+    
+    #[test]
+    fn test_remainderf() {
+        let number: c_float = 5.3;
+        let denominator: c_float = 2.0;
+        
+        unsafe {
+            assert!(remainderf(number, denominator).abs_sub(0.7) <= 0.0000001);
+        }
     }
     
 }
