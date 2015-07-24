@@ -430,7 +430,7 @@ pub mod errno_common {
     ///A remote I/O error occurred
     pub const EREMOTEIO: ::c_int = 121;
     
-    ///You exceeded your quote
+    ///You exceeded your quota
     pub const EDQUOT: ::c_int = 122;
     
     ///No medium was found
@@ -588,7 +588,7 @@ pub mod errno_alpha {
     ///*Points finger and laughs*
     pub const EUSERS: ::c_int = 68;
     
-    ///You exceeded your quote
+    ///You exceeded your quota
     pub const EDQUOT: ::c_int = 69;
     
     ///The file handle is stale. Ew!
@@ -1166,7 +1166,7 @@ pub mod errno_mips {
     pub const EHWPOISON: ::c_int = 168;
     
     
-    ///You exceeded your quote
+    ///You exceeded your quota
     pub const EDQUOT: ::c_int = 1133;
 
 }
