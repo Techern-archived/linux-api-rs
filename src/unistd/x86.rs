@@ -56,6 +56,125 @@ pub mod x86_unistd {
     
     pub const __NR_ACCESS: ::c_long = 33;
     
+    pub const __NR_NICE: ::c_long = 34;
+    
+    pub const __NR_FTIME: ::c_long = 35;
+    
+    pub const __NR_SYNC: ::c_long = 36;
+    
+    pub const __NR_KILL: ::c_long = 37;
+    
+    pub const __NR_RENAME: ::c_long = 38;
+    pub const __NR_MKDIR: ::c_long = 39;
+    pub const __NR_RMDIR: ::c_long = 40;
+    
+    pub const __NR_DUP: ::c_long = 41;
+    
+    pub const __NR_PIPE: ::c_long = 42;
+    
+    pub const __NR_TIMES: ::c_long = 43;
+    
+    pub const __NR_PROF: ::c_long = 44;
+    
+    pub const __NR_BRK: ::c_long = 45;
+    
+    pub const __NR_SETGID: ::c_long = 46;
+    pub const __NR_GETGID: ::c_long = 47;
+    
+    pub const __NR_SIGNAL: ::c_long = 48;
+    
+    pub const __NR_GETEUID: ::c_long = 49
+    pub const __NR_GETEGID: ::c_long = 50;
+    
+    pub const __NR_ACCT: ::c_long = 51;
+    
+    pub const __NR_UMOUNT2: ::c_long = 52;
+    
+    pub const __NR_LOCK: ::c_long = 53;
+    
+    pub const __NR_IOCTL: ::c_long = 54; //We'll need this later :)
+    pub const __NR_FCNTL: ::c_long = 55;
+    
+    pub const __NR_MPX: ::c_long = 56;
+    
+    pub const __NR_SETPGID: ::c_long = 57;
+    
+    pub const __NR_ULIMIT: ::c_long = 58;
+    
+    pub const __NR_OLDOLDUNAME: ::c_long = 59;
+    
+    pub const __NR_UMASK: ::c_long = 60;
+    
+    pub const __NR_CHROOT: ::c_long = 61;
+    
+    pub const __NR_USTAT: ::c_long = 62;
+    
+    pub const __NR_DUP2: ::c_long = 63;
+    
+    pub const __NR_GETPPID: ::c_long = 64;
+    
+    pub const __NR_GETPGRP: ::c_long = 65;
+    
+    pub const __NR_SETSID: ::c_long = 66;
+    
+    pub const __NR_RT_SIGACTION: ::c_long = 67;
+    
+    pub const __NR_SGETMASK: ::c_long = 68;
+    pub const __NR_SSETMASK: ::c_long = 69;
+    
+    pub const __NR_SETREUID: ::c_long = 70;
+    pub const __NR_SETREGID: ::c_long = 71;
+    
+    pub const __NR_RT_SIGSUSPEND: ::c_long = 72;
+    pub const __NR_SIGSUSPEND: ::c_long = __NR_RT_SIGSUSPEND;
+    
+    pub const __NR_RT_SIGPENDING: ::c_long = 73;
+    pub const __NR_SIGPENDING: ::c_long = __NR_RT_SIGPENDING;
+    
+    pub const __NR_SETHOSTNAME: ::c_long = 74;
+    
+    pub const __NR_SETRLIMIT: ::c_long = 75;
+    pub const __NR_GETRLIMIT: ::c_long = 76;
+    pub const __NR_GETRUSAGE: ::c_long = 77;
+    
+    pub const __NR_GETTIMEOFDAY: ::c_long = 78;
+    pub const __NR_SETTIMEOFDAY: ::c_long = 79;
+    
+    pub const __NR_GETGROUPS: ::c_long = 80;
+    pub const __NR_SETGROUPS: ::c_long = 81;
+    
+    pub const __NR_SELECT: ::c_long = 82;
+    
+    pub const __NR_SYMLINK: ::c_long = 83;
+    
+    pub const __NR_OLDLSTAT: ::c_long = 84;
+    
+    pub const __NR_READLINK: ::c_long = 85;
+    
+    pub const __NR_USELIB: ::c_long = 86;
+    
+    pub const __NR_SWAPON: ::c_long = 87;
+    pub const __NR_REBOOT: ::c_long = 88;
+    
+    pub const __NR_READDIR: ::c_long = 89;
+    
+    pub const __NR_MMAP: ::c_long = 90;
+    pub const __NR_MUNMAP: ::c_long = 91;
+    
+    pub const __NR_TRUNCATE: ::c_long = 92;
+    pub const __NR_FTRUNCATE: ::c_long = 93;
+    
+    pub const __NR_FCHMOD: ::c_long = 94;
+    pub const __NR_FCHOWN: ::c_long = 95;
+    
+    pub const __NR_GETPRIORITY: ::c_long = 96;
+    pub const __NR_SETPRIORITY: ::c_long = 97;
+    
+    pub const __NR_PROFIL: ::c_long = 98; //Is this __NR_PROF?
+    
+    pub const __NR_STATFS: ::c_long = 99;
+    pub const __NR_FSTATFS: ::c_long = 100;
+    
     //Anything after here is unsorted
     
     /*pub const __NR_IO_SETUP: ::c_long = 0;
@@ -87,15 +206,12 @@ pub mod x86_unistd {
     pub const __NR_EPOLL_CTL: ::c_long = 21;
     pub const __NR_EPOLL_PWAIT: ::c_long = 22;
     
-    pub const __NR_DUP: ::c_long = 23;
     pub const __NR_DUP3: ::c_long = 24;
     pub const __NR3264_FCNTL: ::c_long = 25; //Whoa, was somebody high when they defined this?
     
     pub const __NR_INOTIFY_INIT1: ::c_long = 26;
     pub const __NR_INOTIFY_ADD_WATCH: ::c_long = 27;
     pub const __NR_INOTIFY_RM_WATCH: ::c_long = 28;
-    
-    pub const __NR_IOCTL: ::c_long = 29; //We'll need this later :)
     
     pub const __NR_IOPRIO_SET: ::c_long = 30;
     pub const __NR_IOPRIO_GET: ::c_long = 31;
@@ -109,7 +225,6 @@ pub mod x86_unistd {
     pub const __NR_LINKAT: ::c_long = 37;
     pub const __NR_RENAMEAT: ::c_long = 38;
     
-    pub const __NR_UMOUNT2: ::c_long = 39;
     pub const __NR_PIVOT_ROOT: ::c_long = 41;
     
     pub const __NR_NFSSERVCTL: ::c_long = 42;
@@ -122,11 +237,8 @@ pub mod x86_unistd {
     pub const __NR_FALLOCATE: ::c_long = 47;
     pub const __NR_FACCESSAT: ::c_long = 48;
     pub const __NR_FCHDIR: ::c_long = 50;
-    pub const __NR_CHROOT: ::c_long = 51;
-    pub const __NR_FCHMOD: ::c_long = 52;
     pub const __NR_FCHMODAT: ::c_long = 53;
     pub const __NR_FCHOWNAT: ::c_long = 54;
-    pub const __NR_FCHOWN: ::c_long = 55;
     pub const __NR_OPENAT: ::c_long = 56;
     pub const __NR_VHANGUP: ::c_long = 58;
     
@@ -159,7 +271,6 @@ pub mod x86_unistd {
     pub const __NR3264_FSTATAT: ::c_long = 79;
     pub const __NR3264_FSTAT: ::c_long = 80;
     
-    pub const __NR_SYNC: ::c_long = 81;
     pub const __NR_FSYNC: ::c_long = 82;
     pub const __NR_FDATASYNC: ::c_long = 83;
     pub const __NR_SYNC_FILE_RANGE: ::c_long = 84;
@@ -170,8 +281,6 @@ pub mod x86_unistd {
     pub const __NR_TIMERFD_GETTIME: ::c_long = 87;
     
     pub const __NR_UTIMENSAT: ::c_long = 88;
-    
-    pub const __NR_ACCT: ::c_long = 89;
     
     pub const __NR_CAPGET: ::c_long = 90;
     pub const __NR_CAPSET: ::c_long = 91;
@@ -222,55 +331,29 @@ pub mod x86_unistd {
     pub const __NR_SCHED_GET_PRIORITY_MIN: ::c_long = 126;
     pub const __NR_SCHED_RR_GET_INTERVAL: ::c_long = 127;
     
-    pub const __NR_KILL: ::c_long = 129;
     pub const __NR_TKILL: ::c_long = 130;
     pub const __NR_TGKILL: ::c_long = 131;
     pub const __NR_SIGNALTSTACK: ::c_long = 132;
-    pub const __NR_RT_SIGSUSPEND: ::c_long = 133;
-    pub const __NR_RT_SIGACTION: ::c_long = 134;
     pub const __NR_RT_SIGPROCMASK: ::c_long = 135;
-    pub const __NR_RT_SIGPENDING: ::c_long = 136;
     pub const __NR_RT_SIGTIMEDWAIT: ::c_long = 137;
     pub const __NR_RT_SIGQUEUEINFO: ::c_long = 138;
     pub const __NR_RT_SIGRETURN: ::c_long = 139;
     
-    pub const __NR_SETPRIORITY: ::c_long = 140;
-    pub const __NR_GETPRIORITY: ::c_long = 141;
-    pub const __NR_REBOOT: ::c_long = 142;
-    pub const __NR_SETREGID: ::c_long = 143;
-    pub const __NR_SETGID: ::c_long = 144;
-    pub const __NR_SETREUID: ::c_long = 145;
     pub const __NR_SETRESUID: ::c_long = 147;
     pub const __NR_GETRESUID: ::c_long = 148;
     pub const __NR_SETRESGID: ::c_long = 149;
     pub const __NR_GETRESGID: ::c_long = 150;
     pub const __NR_SETFSUID: ::c_long = 151;
     pub const __NR_SETFSGID: ::c_long = 152;
-    pub const __NR_TIMES: ::c_long = 153;
-    pub const __NR_SETPGID: ::c_long = 154;
     pub const __NR_GETPGID: ::c_long = 155;
     pub const __NR_GETSID: ::c_long = 156;
-    pub const __NR_SETSID: ::c_long = 157;
-    pub const __NR_GETGROUPS: ::c_long = 158;
-    pub const __NR_SETGROUPS: ::c_long = 159;
     pub const __NR_UNAME: ::c_long = 160;
-    pub const __NR_SETHOSTNAME: ::c_long = 161;
     pub const __NR_SETDOMAINNAME: ::c_long = 162;
-    pub const __NR_GETRLIMIT: ::c_long = 163;
-    pub const __NR_SETRLIMIT: ::c_long = 164;
-    pub const __NR_GETRUSAGE: ::c_long = 165;
-    pub const __NR_UMASK: ::c_long = 166;
     pub const __NR_PRCTL: ::c_long = 167;
     pub const __NR_GETCPU: ::c_long = 168;
     
-    pub const __NR_GETTIMEOFDAY: ::c_long = 169;
-    pub const __NR_SETTIMEOFDAY: ::c_long = 170;
     pub const __NR_ADJTIMEX: ::c_long = 171;
     
-    pub const __NR_GETPPID: ::c_long = 173;
-    pub const __NR_GETEUID: ::c_long = 175;
-    pub const __NR_GETGID: ::c_long = 176;
-    pub const __NR_GETEGID: ::c_long = 177;
     pub const __NR_GETTID: ::c_long = 178;
     pub const __NR_SYSINFO: ::c_long = 179;
     
@@ -314,8 +397,6 @@ pub mod x86_unistd {
     
     pub const __NR_READAHEAD: ::c_long = 213;
     
-    pub const __NR_BRK: ::c_long = 214;
-    pub const __NR_MUNMAP: ::c_long = 215;
     pub const __NR_MREMAP: ::c_long = 216;
     
     pub const __NR_ADD_KEY: ::c_long = 217;
@@ -329,7 +410,6 @@ pub mod x86_unistd {
     
     //IFNDEF __ARCH_NOMMU - We will probably implement this in code
     
-    pub const __NR_SWAPON: ::c_long = 224;
     pub const __NR_SWAPOFF: ::c_long = 225;
     pub const __NR_MPROTECT: ::c_long = 226;
     pub const __NR_MSYNC: ::c_long = 227;
@@ -381,49 +461,31 @@ pub mod x86_unistd {
     //TODO: Every few months, check kernel to see if these are being removed. They are slated to be removed "eventually"
     
     pub const __NR_CHOWN: ::c_long = 1029;
-    pub const __NR_MKDIR: ::c_long = 1030;
-    pub const __NR_RMDIR: ::c_long = 1031;
-    pub const __NR_RENAME: ::c_long = 1034;
-    pub const __NR_READLINK: ::c_long = 1035;
-    pub const __NR_SYMLINK: ::c_long = 1036;
     pub const __NR_UTIMES: ::c_long = 1037;
     pub const __NR3264_STAT: ::c_long = 1038;
     pub const __NR3264_LSTAT: ::c_long = 1039;
     
-    pub const __NR_PIPE: ::c_long = 1040;
-    pub const __NR_DUP2: ::c_long = 1041;
     pub const __NR_EPOLL_CREATE: ::c_long = 1042;
     pub const __NR_INOTIFY_INIT: ::c_long = 1043;
     pub const __NR_EVENTFD: ::c_long = 1044;
     pub const __NR_SIGNALFD: ::c_long = 1045;
     
     pub const __NR_SENDFILE: ::c_long = 1046;
-    pub const __NR_FTRUNCATE: ::c_long = 1047;
-    pub const __NR_TRUNCATE: ::c_long = 1048;
     pub const __NR_STST: ::c_long = 1049;
     pub const __NR_LSTAT: ::c_long = 1050;
     pub const __NR_FSTAT: ::c_long = 1051;
-    pub const __NR_FCNTL: ::c_long = 1052;
     pub const __NR_FADVISE64: ::c_long = 1053;
     pub const __NR_FNEWFSTATAT: ::c_long = 1054;
-    pub const __NR_FSTATFS: ::c_long = 1055;
-    pub const __NR_STATFS: ::c_long = 1056;
-    pub const __NR_MMAP: ::c_long = 1058;
-    
-    pub const __NR_GETPGRP: ::c_long = 1060;
     
     pub const __NR_GETDENTS: ::c_long = 1065;
     pub const __NR_FUTIMESAT: ::c_long = 1066;
-    pub const __NR_SELECT: ::c_long = 1067;
     pub const __NR_POLL: ::c_long = 1068;
     pub const __NR_EPOLL_WAIT: ::c_long = 1069;
-    pub const __NR_USTAT: ::c_long = 1070;
     pub const __NR_VFORK: ::c_long = 1071;
     pub const __NR_OLDWAIT4: ::c_long = 1072;
     pub const __NR_RECV: ::c_long = 1073;
     pub const __NR_SEND: ::c_long = 1074;
     pub const __NR_BDFLUSH: ::c_long = 1075;
-    pub const __NR_USELIB: ::c_long = 1077;
     pub const __NR__SYSCTL: ::c_long = 1078;
     */
     
