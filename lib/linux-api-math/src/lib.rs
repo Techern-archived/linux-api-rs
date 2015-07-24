@@ -16,9 +16,18 @@ extern {
     ///Returns the cosine of an angle of X radians
     pub fn cosf(x: c_float) -> c_float;
     
+    ///Returns the sine of an angle of x radians
+    pub fn sin(x: c_double) -> c_double;
     
-    //sin
-    //tan
+    ///Returns the sine of an angle of x radians
+    pub fn sinf(x: c_float) -> c_float;
+    
+    ///Returns the tangent of an angle of x radians
+    pub fn tan(x: c_double) -> c_double;
+    
+    ///Returns the tangent of an angle of x radians
+    pub fn tanf(x: c_float) -> c_float;
+    
     //acos
     //asin
     //atan
@@ -152,6 +161,58 @@ mod test {
             let result = cosf(degrees * pi / 180.0);
             
             assert!(result.abs_sub(0.5) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_sin() {
+        let pi: c_double = 3.14159265;
+        
+        let degrees: c_double = 30.0;
+        
+        unsafe { 
+            let result = sin(degrees * pi / 180.0);
+            
+            assert!(result.abs_sub(0.5) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_sinf() {
+        let pi: c_float = 3.14159265;
+        
+        let degrees: c_float = 30.0;
+        
+        unsafe { 
+            let result = sinf(degrees * pi / 180.0);
+            
+            assert!(result.abs_sub(0.5) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_tan() {
+        let pi: c_double = 3.14159265;
+        
+        let degrees: c_double = 45.0;
+        
+        unsafe { 
+            let result = tan(degrees * pi / 180.0);
+            
+            assert!(result.abs_sub(1.0) <= 0.000001);
+        }
+    }
+    
+    #[test]
+    fn test_tanf() {
+        let pi: c_float = 3.14159265;
+        
+        let degrees: c_float = 45.0;
+        
+        unsafe { 
+            let result = tanf(degrees * pi / 180.0);
+            
+            assert!(result.abs_sub(1.0) <= 0.000001);
         }
     }
     
