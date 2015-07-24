@@ -267,7 +267,7 @@ pub mod errno_common {
     pub const EDOTDOT: ::c_int = 73;
     
     ///Message is not a data message
-    pub const EBADMASG: ::c_int = 74;
+    pub const EBADMSG: ::c_int = 74;
     
     ///Value is too large for the defined data type
     pub const EOVERFLOW: ::c_int = 75;
@@ -625,7 +625,7 @@ pub mod errno_alpha {
     pub const ETIME: ::c_int = 83;
     
     ///Message is not a data message
-    pub const EBADMASG: ::c_int = 84;
+    pub const EBADMSG: ::c_int = 84;
     
     ///Protocol error
     pub const EPROTO: ::c_int = 85;
