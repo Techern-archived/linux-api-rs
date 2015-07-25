@@ -3,6 +3,8 @@
 pub const IPC_PRIVATE: ::__kernel_key_t = 0;
 
 ///This structure is obsolute, used only for backwards compatibility and libc5 compilation
+#[repr(C)]
+#[derive(Copy, Clone, Debug)]
 pub struct ipc_perm {
 
     pub key: ::__kernel_key_t,
