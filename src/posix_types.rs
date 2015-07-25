@@ -32,6 +32,54 @@ pub type uid_t = __kernel_uid32_t;
 ///A type that defines a group ID
 pub type gid_t = __kernel_uid32_t;
 
+#[cfg(not(any(target_arch = "cris",
+              target_arch = "m68k", 
+              target_arch = "sh", 
+              target_arch = "arm", 
+              target_arch = "sparc", 
+              target_arch = "frv", 
+              target_arch = "mn10300", 
+              target_arch = "x86", 
+              target_arch = "x86_64",
+              target_arch = "m32r")))]
+pub type __kernel_uid_t = ::c_uint;
+
+#[cfg(any(target_arch = "cris", 
+         target_arch = "m68k", 
+         target_arch = "sh", 
+         target_arch = "arm", 
+         target_arch = "sparc", 
+         target_arch = "frv", 
+         target_arch = "mn10300", 
+         target_arch = "x86", 
+         target_arch = "x86_64", 
+         target_arch = "m32r"))]
+pub type __kernel_uid_t = ::c_ushort;
+
+#[cfg(not(any(target_arch = "cris",
+              target_arch = "m68k", 
+              target_arch = "sh", 
+              target_arch = "arm", 
+              target_arch = "sparc", 
+              target_arch = "frv", 
+              target_arch = "mn10300", 
+              target_arch = "x86", 
+              target_arch = "x86_64",
+              target_arch = "m32r")))]
+pub type __kernel_gid_t = ::c_uint;
+
+#[cfg(any(target_arch = "cris", 
+         target_arch = "m68k", 
+         target_arch = "sh", 
+         target_arch = "arm", 
+         target_arch = "sparc", 
+         target_arch = "frv", 
+         target_arch = "mn10300", 
+         target_arch = "x86", 
+         target_arch = "x86_64", 
+         target_arch = "m32r"))]
+pub type __kernel_gid_t = ::c_ushort;
+
 #[cfg(target_arch="x86")]
 ///A kernel type for long, set to c_longlong snice you're on x86
 pub type __kernel_long_t = ::c_longlong;
