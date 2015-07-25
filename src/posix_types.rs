@@ -116,7 +116,7 @@ pub type __kernel_key_t = ::c_int;
 
 pub type key_t = __kernel_key_t;
 
-pub type mode_t = __kernel_mode_t;
+//pub type mode_t = __kernel_mode_t; TODO: Re-export this in Rust
 
 #[cfg(target_arch="x86")]
 ///A kernel type for long, set to c_longlong snice you're on x86
