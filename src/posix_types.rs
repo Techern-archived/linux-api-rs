@@ -20,11 +20,17 @@ pub type clockid_t = ::c_int;
 ///A type that defines a Process or Thread Group ID
 pub type pid_t = ::c_int;
 
+///A type used for new uids
+pub type __kernel_uid32_t = ::c_uint;
+
+///A type used for new gids
+pub type __kernel_gid32_t = ::c_uint;
+
 ///A type that defines a user ID
-pub type uid_t = ::c_uint;
+pub type uid_t = __kernel_uid32_t;
 
 ///A type that defines a group ID
-pub type gid_t = ::c_uint;
+pub type gid_t = __kernel_uid32_t;
 
 #[cfg(target_arch="x86")]
 ///A kernel type for long, set to c_longlong snice you're on x86
