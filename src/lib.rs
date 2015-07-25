@@ -11,6 +11,7 @@ pub mod cstdlib;
 pub mod errno;
 pub mod ipc;
 pub mod posix_types;
+pub mod sem;
 pub mod time;
 
 pub use std::os::*;
