@@ -11,9 +11,10 @@ Currently, it is in very early development, so what you are looking for probably
 ###Active packages
 
  * [time-sys ![Crates.io](https://img.shields.io/crates/v/time-sys.svg)](https://crates.io/crates/time-sys)
- * [linux-api-sys ![Crates.io](https://img.shields.io/crates/v/linux-api-sys.svg)](https://crates.io/crates/linux-api-sys)
  * [linux-api-exit ![Crates.io](https://img.shields.io/crates/v/linux-api-exit.svg)](https://crates.io/crates/linux-api-exit)
+ * [linux-api-math ![Crates.io](https://img.shields.io/crates/v/linux-api-math.svg)](https://crates.io/crates/linux-api-math)
+ * [linux-api-sys ![Crates.io](https://img.shields.io/crates/v/linux-api-sys.svg)](https://crates.io/crates/linux-api-sys)
  
 ###Reserved packages
 
- * More coming shortly
+ * [linux-api-semaphore ![Crates.io](https://img.shields.io/crates/v/linux-api-semaphore.svg)](https://crates.io/crates/linux-api-semaphore)
